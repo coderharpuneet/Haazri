@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Management System</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .container {
+            margin-top: 30px;
+        }
+        .card {
+            display: none;
+            margin-top: 20px;
+        }
+        .table-container {
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h3 class="text-center mb-4">Student Management System</h3>
+
+    <!-- Buttons to Show Forms -->
+    <div class="d-flex justify-content-center mb-3">
+        <button class="btn btn-primary mx-2" onclick="toggleForm('addCourseForm')">Add Course</button>
+        <button class="btn btn-secondary mx-2" onclick="toggleForm('editAttendanceForm')">Edit Attendance</button>
+    </div>
+
+    <!-- Add Course Form -->
+    <div id="addCourseForm" class="card p-3">
+        <h5>Add Course</h5>
+        <form onsubmit="addCourse(event)">
+            <div class="mb-2">
+                <input type="text" class="form-control" id="teacherName" placeholder="Teacher Name" required>
+            </div>
+            <div class="mb-2">
+                <input type="date" class="form-control" id="courseStartDate" required>
+            </div>
+            <div class="mb-2">
+                <input type="text" class="form-control" id="courseName" placeholder="Course Name" required>
+            </div>
+            <div class="mb-2">
+                <input type="text" class="form-control" id="courseCode" placeholder="Course Code" required>
+            </div>
+            <button type="submit" class="btn btn-success w-100">Add</button>
+        </form>
+    </div>
+
+    <!-- Edit Attendance Form -->
+    <div id="editAttendanceForm" class="card p-3">
+        <h5>Edit Attendance</h5>
+        <form onsubmit="editAttendance(event)">
+            <div class="mb-2">
+                <input type="text" class="form-control" id="subject" placeholder="Subject" required>
+            </div>
+            <div class="mb-2">
+                <input type="number" class="form-control" id="deliveredLectures" placeholder="Delivered Lectures" required>
+            </div>
+            <div class="mb-2">
+                <input type="number" class="form-control" id="attendedLectures" placeholder="Attended Lectures" required>
+            </div>
+            <div class="mb-2">
+                <input type="text" class="form-control" id="totalPercentage" placeholder="Total Percentage" required>
+            </div>
+            <div class="mb-2">
+                <input type="number" class="form-control" id="approvedDL" placeholder="Approved DL">
+            </div>
+            <div class="mb-2">
+                <input type="number" class="form-control" id="approvedML" placeholder="Approved ML">
+            </div>
+            <button type="submit" class="btn btn-warning w-100">Update</button>
+        </form>
+    </div>
+
+    <!-- Table to Display Courses and Attendance -->
+    <div class="table-container">
+        <table class="table table-bordered table-striped">
+            <thead class="table-dark">
+                <tr>
+                    <th>#</th>
+                    <th>Course Name</th>
+                    <th>Teacher</th>
+                    <th>Start Date</th>
+                    <th>Delivered</th>
+                    <th>Attended</th>
+                    <th>Percentage</th>
+                    <th>Approved DL</th>
+                    <th>Approved ML</th>
+                </tr>
+            </thead>
+            <tbody id="courseTableBody">
+                <!-- Data will be inserted dynamically -->
+            </tbody>
+            <tfoot class="table-light">
+                <tr>
+                    <td colspan="4"><strong>Total</strong></td>
+                    <td id="totalDelivered">0</td>
+                    <td id="totalAttended">0</td>
+                    <td colspan="3"></td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+</div>
+
+<script>
+    let courses = [];
+    let totalDelivered = 0;
+    let totalAttended = 0;
+
+    function toggleForm(formId) {
+        document.getElementById("addCourseForm").style.display = "none";
+        document.getElementById("editAttendanceForm").style.display = "none";
+        document.getElementById(formId).style.display = "block";
+    }
+
+    function addCourse(event) {
+        event.preventDefault();
+        
+        let teacherName = document.getElementById("teacherName").value;
+        let courseStartDate = document.getElementById("courseStartDate").value;
+        let courseName = document.getElementById("courseName").value;
+        let courseCode = document.getElementById("courseCode").value;
+
+        courses.push({
+            courseName, teacherName, courseStartDate, courseCode, delivered: 0, attended: 0, percentage: "0", dl: 0, ml: 0
+        });
+
+        updateTable();
+        document.getElementById("addCourseForm").style.display = "none";
+    }
+
+    function editAttendance(event) {
+        event.preventDefault();
+        
+        if (courses.length === 0) {
+            alert("No courses available! Add a course first.");
+            return;
+        }
+        let subject =document.getElementById('subject').value;
+        let delivered = parseInt(document.getElementById("deliveredLectures").value);
+        let attended = parseInt(document.getElementById("attendedLectures").value);
+        let percentage = document.getElementById("totalPercentage").value;
+        let dl = parseInt(document.getElementById("approvedDL").value) || 0;
+        let ml = parseInt(document.getElementById("approvedML").value) || 0;
+
+
+
+        let course=courses.find(course => course.courseName === subject);
+        if (course) {
+            totalDelivered -= course.delivered;
+            totalAttended -= course.attended;
+
+            course.delivered = delivered;
+            course.attended = attended;
+            course.percentage = percentage;
+            course.dl = dl;
+            course.ml = ml;
+
+            totalDelivered += delivered;
+            totalAttended += attended;
+
+            updateTable();
+            document.getElementById("editAttendanceForm").style.display = "none";
+        } else {
+            alert("Course not found!");
+        }
+    }
+
+    function updateTable() {
+        let tableBody = document.getElementById("courseTableBody");
+        tableBody.innerHTML = "";
+
+        courses.forEach((course, index) => {
+            let row = `<tr>
+                <td>${index + 1}</td>
+                <td>${course.courseName} (${course.courseCode})</td>
+                <td>${course.teacherName}</td>
+                <td>${course.courseStartDate}</td>
+                <td>${course.delivered}</td>
+                <td>${course.attended}</td>
+                <td>${course.percentage}%</td>
+                <td>${course.dl}</td>
+                <td>${course.ml}</td>
+            </tr>`;
+            tableBody.innerHTML += row;
+        });
+
+        document.getElementById("totalDelivered").innerText = totalDelivered;
+        document.getElementById("totalAttended").innerText = totalAttended;
+    }
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

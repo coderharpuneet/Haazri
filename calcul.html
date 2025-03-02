@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap Navbar</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+<style>
+   
+    .fooo{
+        background: linear-gradient(to bottom, rgba(0, 80, 120, 0.8), rgba(0, 120, 100, 0.6)), 
+                url('back.jpg') center/cover no-repeat;color: white;
+
+    }
+    
+    .nav {
+        width: 50%;
+    }
+    body {
+        background-color: #E6FAF5; /* Light background */
+    }
+    
+    .circle {
+        width: 50px;
+        height: 50px;
+        background-color: #198754; /* Bootstrap success green */
+        color: white;
+        font-weight: bold;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 10px;
+        font-size: 1.2rem;
+    }
+    
+    .step h5 {
+        margin-top: 10px;
+    }
+    
+    .step p {
+        color: #555;
+    }
+    .fooo p{
+        color: white;
+    }
+    
+    .card {
+        display: none;
+        margin-top: 20px;
+    }
+    .table-container {
+        margin-top: 30px;
+    }
+    .info-section {
+        padding: 60px 0;
+        background: linear-gradient(to right, rgba(255,255,255,1), rgba(240, 245, 255, 0.6)); /* Gradient background */
+    }
+    .feature-icon {
+        font-size: 24px;
+        color: teal;
+    }
+    .testimonial {
+        background: white;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0px 5px 20px rgba(0,0,0,0.1);
+    }
+    .testimonial img {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        margin-right: 10px;
+    }
+    .footer {
+        background-color: #f8f9fa;
+        padding: 40px 0;
+        text-align: center;
+    }
+    .footer a {
+        text-decoration: none;
+        color: #212529;
+        font-weight: 500;
+        margin: 0 15px;
+    }
+    .footer a:hover {
+        text-decoration: underline;
+    }
+    .social-icons a {
+        font-size: 20px;
+        margin: 0 10px;
+        color: #212529;
+    }
+    .social-icons a:hover {
+        color: #007bff;
+    }
+    .footer-text {
+        font-size: 14px;
+        margin-top: 10px;
+        color: #6c757d;
+    }
+    .made-in {
+        font-size: 12px;
+        color: #6c757d;
+    }
+</style>
+
+<body>
+    <center>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light nav">
+            <div class="container-fluid"><img src="logo5.png" alt="Logo" width="50" height="50"
+                    class="d-inline-block align-text-top" style="border-radius: 10px;">
+                <a class="navbar-brand" href="#">
+                    Haaज़री</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Calculator</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link btn btn-success text-black" href="#">Install</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </center><div class="hero-section">
+    <div class="container my-5 p-4 bg-light rounded-3 fooo">
+        <div class="row align-items-center">
+            <div class="col-md-6">
+                <h2 class="fw-bold">How to Use the Calculator</h2>
+                <p>Follow these simple steps to calculate your attendance and discover your bunking potential!</p>
+            </div>
+            <div class="col-md-6 text-center">
+                <img src="https://cdn.a1.art/assets/images/app_1811317900177637378/1811317900181831681/aa3ac373-b00f-46cb-b53d-bf79b25da7f9.jpeg?oldPrompt=A%20vibrant%20and%20engaging%20classroom%20scene%20where%20students%20are%20shown%20interacting%20in%20a%20lively%20environment,%20with%20one%20student%20thoughtfully%20calculating%20attendance%20on%20a%20notebook%20or%20tablet.%20The%20setting%20should%20emphasize%20a%20balance%20between%20fun%20and%20productivity,%20reflecting%20the%20idea%20of%20tracking%20attendance%20in%20a%20lighthearted%20but%20responsible%20manner.%20Background%20elements%20could%20include%20a%20chalkboard%20or%20digital%20board%20displaying%20attendance-related%20icons%20or%20numbers,%20subtly%20hinting%20at%20the%20Bunk-O-Meter%20tool%27s%20purpose." alt="Student at board" class="img-fluid rounded shadow-lg" style="height: 250px;width:500px">
+            </div>
+        </div>
+    
+        <div class="row text-center mt-4">
+            <div class="col-md-4">
+                <div class="step">
+                    <div class="circle">01</div>
+                    <h5 class="fw-bold">Enter Your Attendance Details</h5>
+                    <p>Provide the total classes held and the number of classes you attended.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="step">
+                    <div class="circle">02</div>
+                    <h5 class="fw-bold">Let the Calculator Do the Math</h5>
+                    <p>We’ll instantly compute your attendance percentage and bunking limit.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="step">
+                    <div class="circle">03</div>
+                    <h5 class="fw-bold">Get Personalized Tips</h5>
+                    <p>Receive advice on staying within your safe attendance threshold.</p>
+                </div>
+            </div>
+        </div>
+    </div></div>
+    <div class="container">
+        <h3 class="text-center mb-4">Student Management System</h3>
+    
+        <!-- Buttons to Show Forms -->
+        <div class="d-flex justify-content-center mb-3">
+            <button class="btn btn-primary mx-2" onclick="toggleForm('addCourseForm')">Add Course</button>
+            <button class="btn btn-secondary mx-2" onclick="toggleForm('editAttendanceForm')">Edit Attendance</button>
+        </div>
+    
+        <!-- Add Course Form -->
+        <div id="addCourseForm" class="card p-3">
+            <h5>Add Course</h5>
+            <form onsubmit="addCourse(event)">
+                <div class="mb-2">
+                    <input type="text" class="form-control" id="teacherName" placeholder="Teacher Name" required>
+                </div>
+                <div class="mb-2">
+                    <input type="date" class="form-control" id="courseStartDate" required>
+                </div>
+                <div class="mb-2">
+                    <input type="text" class="form-control" id="courseName" placeholder="Course Name" required>
+                </div>
+                <div class="mb-2">
+                    <input type="text" class="form-control" id="courseCode" placeholder="Course Code" required>
+                </div>
+                <button type="submit" class="btn btn-success w-100">Add</button>
+            </form>
+        </div>
+    
+        <!-- Edit Attendance Form -->
+        <div id="editAttendanceForm" class="card p-3">
+            <h5>Edit Attendance</h5>
+            <form onsubmit="editAttendance(event)">
+                <div class="mb-2">
+                    <input type="text" class="form-control" id="subject" placeholder="Subject" required>
+                </div>
+                <div class="mb-2">
+                    <input type="number" class="form-control" id="deliveredLectures" placeholder="Delivered Lectures" required>
+                </div>
+                <div class="mb-2">
+                    <input type="number" class="form-control" id="attendedLectures" placeholder="Attended Lectures" required>
+                </div>
+                <div class="mb-2">
+                    <input type="text" class="form-control" id="totalPercentage" placeholder="Total Percentage" required>
+                </div>
+                <div class="mb-2">
+                    <input type="number" class="form-control" id="approvedDL" placeholder="Approved DL">
+                </div>
+                <div class="mb-2">
+                    <input type="number" class="form-control" id="approvedML" placeholder="Approved ML">
+                </div>
+                <button type="submit" class="btn btn-warning w-100">Update</button>
+            </form>
+        </div>
+    
+        <!-- Table to Display Courses and Attendance -->
+        <div class="table-container">
+            <table class="table table-bordered table-striped">
+                <thead class="table-dark">
+                    <tr>
+                        <th>#</th>
+                        <th>Course Name</th>
+                        <th>Teacher</th>
+                        <th>Start Date</th>
+                        <th>Delivered</th>
+                        <th>Attended</th>
+                        <th>Percentage</th>
+                        <th>Approved DL</th>
+                        <th>Approved ML</th>
+                    </tr>
+                </thead>
+                <tbody id="courseTableBody">
+                    <!-- Data will be inserted dynamically -->
+                </tbody>
+                <tfoot class="table-light">
+                    <tr>
+                        <td colspan="4"><strong>Total</strong></td>
+                        <td id="totalDelivered">0</td>
+                        <td id="totalAttended">0</td>
+                        <td colspan="3"></td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+    
+    <script>
+        let courses = [];
+        let totalDelivered = 0;
+        let totalAttended = 0;
+    
+        function toggleForm(formId) {
+            document.getElementById("addCourseForm").style.display = "none";
+            document.getElementById("editAttendanceForm").style.display = "none";
+            document.getElementById(formId).style.display = "block";
+        }
+    
+        function addCourse(event) {
+            event.preventDefault();
+            
+            let teacherName = document.getElementById("teacherName").value;
+            let courseStartDate = document.getElementById("courseStartDate").value;
+            let courseName = document.getElementById("courseName").value;
+            let courseCode = document.getElementById("courseCode").value;
+    
+            courses.push({
+                courseName, teacherName, courseStartDate, courseCode, delivered: 0, attended: 0, percentage: "0", dl: 0, ml: 0
+            });
+    
+            updateTable();
+            document.getElementById("addCourseForm").style.display = "none";
+        }
+    
+        function editAttendance(event) {
+            event.preventDefault();
+            
+            if (courses.length === 0) {
+                alert("No courses available! Add a course first.");
+                return;
+            }
+            let subject =document.getElementById('subject').value;
+            let delivered = parseInt(document.getElementById("deliveredLectures").value);
+            let attended = parseInt(document.getElementById("attendedLectures").value);
+            let percentage = document.getElementById("totalPercentage").value;
+            let dl = parseInt(document.getElementById("approvedDL").value) || 0;
+            let ml = parseInt(document.getElementById("approvedML").value) || 0;
+    
+    
+    
+            let course=courses.find(course => course.courseName === subject);
+            if (course) {
+                totalDelivered -= course.delivered;
+                totalAttended -= course.attended;
+    
+                course.delivered = delivered;
+                course.attended = attended;
+                course.percentage = percentage;
+                course.dl = dl;
+                course.ml = ml;
+    
+                totalDelivered += delivered;
+                totalAttended += attended;
+    
+                updateTable();
+                document.getElementById("editAttendanceForm").style.display = "none";
+            } else {
+                alert("Course not found!");
+            }
+        }
+    
+        function updateTable() {
+            let tableBody = document.getElementById("courseTableBody");
+            tableBody.innerHTML = "";
+    
+            courses.forEach((course, index) => {
+                let row = `<tr>
+                    <td>${index + 1}</td>
+                    <td>${course.courseName} (${course.courseCode})</td>
+                    <td>${course.teacherName}</td>
+                    <td>${course.courseStartDate}</td>
+                    <td>${course.delivered}</td>
+                    <td>${course.attended}</td>
+                    <td>${course.percentage}%</td>
+                    <td>${course.dl}</td>
+                    <td>${course.ml}</td>
+                </tr>`;
+                tableBody.innerHTML += row;
+            });
+    
+            document.getElementById("totalDelivered").innerText = totalDelivered;
+            document.getElementById("totalAttended").innerText = totalAttended;
+        }
+    </script>
+    <section class="info-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <!-- Left Column -->
+                <div class="col-md-7">
+                    <h6 class="text-primary fw-bold">Stay on Track</h6>
+                    <h2 class="fw-bold">Understand Your Bunk Threshold</h2>
+                    <p class="text-muted">
+                        Haaज़री helps you find the perfect balance between fun and responsibility. 
+                        Keep your attendance above the required percentage and avoid last-minute surprises.
+                    </p>
+                    <div class="mt-4">
+                        <div class="d-flex align-items-start mb-3">
+                            <span class="feature-icon me-3"><i class="fas fa-chart-line"></i></span>
+                            <div>
+                                <h5 class="fw-bold">Real-Time Calculations</h5>
+                                <p class="text-muted">Get instant results with accurate data processing.</p>
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-start mb-3">
+                            <span class="feature-icon me-3"><i class="fas fa-lightbulb"></i></span>
+                            <div>
+                                <h5 class="fw-bold">Helpful Insights</h5>
+                                <p class="text-muted">Receive actionable tips to manage your attendance effectively.</p>
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-start">
+                            <span class="feature-icon me-3"><i class="fas fa-calculator"></i></span>
+                            <div>
+                                <h5 class="fw-bold">Smart Planning</h5>
+                                <p class="text-muted">Plan your semester with confidence using our easy-to-use tools.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Right Column (Testimonial) -->
+                <div class="col-md-5">
+                    <div class="testimonial">
+                        <p class="fw-bold">"Thanks to Haaज़री, I know exactly how many classes I can skip without worrying about my grades!"</p>
+                        <div class="d-flex align-items-center">
+                            <img src="https://via.placeholder.com/40" alt="User Image">
+                            <div>
+                                <h6 class="mb-0 fw-bold">Jamie Lee</h6>
+                                <small class="text-muted">@studentlife</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <a href="#">About Haaज़री</a>
+                    <a href="#">Attendance Calculator</a>
+                    <a href="#">Meet the Team</a>
+                    <a href="#">Future Features</a>
+                    <a href="#">Contact Us</a>
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-12 social-icons">
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-github"></i></a>
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-12 footer-text">
+                    © 2025 Haaज़री. Helping you master the art of bunking responsibly!
+                </div>
+            </div>
+            <div class="row mt-2">
+                <div class="col-12 made-in">
+                   
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    </body>
+    </html>
+    
