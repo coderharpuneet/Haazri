@@ -1,0 +1,300 @@
+.nav{
+    width: 50%;
+}
+
+/* General body styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0; /* Remove default margin */
+}
+
+/* Background styles */
+.background {
+    background-image: 
+        linear-gradient(rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.1)), /* Gradient overlay */
+        url('https://stetsonassociates.com/wp-content/uploads/Teacher-Back-to-School-Blog-Image.jpg'); /* Background image */
+    background-size: cover; /* Ensures the image covers the entire area */
+    background-position: center; /* Center the background image */
+    height: 90vh; /* Full height of the viewport */
+    display: flex;
+    justify-content: center; /* Center the white box horizontally */
+    align-items: center; /* Center the white box vertically */
+}
+
+/* White box styles */
+.white-box {
+    background-color: rgba(255, 255, 255, 0.9); /* White background with slight transparency */
+    padding: 30px; /* Padding inside the box */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Shadow effect */
+    max-width: 600px; /* Limit the width of the box */
+    text-align: center; /* Center text inside the box */
+}
+
+/* Heading styles */
+h1 {
+    font-size: 2.5rem; /* Large font size for main heading */
+    margin-bottom: 10px; /* Space below the heading */
+}
+
+h2 {
+    font-size: 2rem; /* Slightly smaller font size for subheading */
+    margin-bottom: 15px; /* Space below the subheading */
+}
+
+/* Paragraph styles */
+p {
+    font-size: 1.2rem; /* Readable font size for paragraph */
+    line-height: 1.5; /* Line height for better readability */
+}
+
+/* Button styles */
+.btn-primary {
+    margin-top: 30px; /* Increased space above the button */
+    background-color: #40E0D0; /* Turquoise color */
+    color: white; /* White text color */
+    padding: 10px 20px; /* Padding for the button */
+    border: none; /* Remove border */
+    border-radius: 5px; /* Rounded corners */
+    text-decoration: none; /* Remove underline */
+    display: inline-flex; /* Align icon and text */
+    align-items: center; /* Center icon vertically */
+}
+
+.btn-primary i {
+    margin-left: 8px; /* Space between text and icon */
+}
+
+/* Content section styles */
+.content-section {
+    display: flex; /* Use flexbox for layout */
+    padding: 40px; /* Padding around the content */
+    background: 
+        linear-gradient(rgba(0, 128, 128, 0.8), rgba(0, 128, 128, 0.8)), 
+        url('https://www.worldbank.org/content/dam/photos/1440x600/2021/feb/1440-teachers-cover.jpg'); 
+    background-size: cover; /* Cover the entire section */
+    background-position: center; /* Center the background */
+    background-repeat: no-repeat; /* Prevent repetition */
+    color: white; /* Set text color to white for contrast */
+    min-height: 85vh; /* Ensures section has enough height */
+}
+
+/* Text content styles */
+.text-content {
+    flex: 1; /* Take up available space */
+    padding-right: 20px; /* Space between text and features */
+}
+
+/* Text content paragraph styles */
+.text-content p {
+    color: white; /* Set paragraph text color to white */
+}
+
+/* Features container styles */
+.features {
+    display: flex; /* Use flexbox for layout */
+    flex-wrap: wrap; /* Allow wrapping of items */
+    flex: 1; /* Take up available space */
+}
+
+/* Feature box styles */
+.feature {
+    background-color: white; /* White background for each feature */
+    border-radius: 8px; /* Rounded corners */
+    padding: 20px; /* Padding inside each feature box */
+    margin: 10px; /* Space between feature boxes */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    flex: 0 0 calc(50% - 20px); /* Two cards per row with space */
+}
+
+h2 {
+    margin-bottom: 20px; /* Space below the main heading */
+}
+
+h3 {
+    margin-bottom: 10px; /* Space below feature headings */
+}
+
+/* Additional features section styles */
+.additional-features {
+    display: flex; /* Use flexbox for layout */
+    justify-content: space-around; /* Space items evenly */
+    padding: 40px; /* Padding around the section */
+    background-color: #f8f9fa; /* Light background color */
+}
+
+/* Feature item styles */
+.feature-item {
+    font-weight: 200;
+    text-align: center; /* Center text */
+    max-width: 200px; /* Limit width of feature items */
+}
+
+.feature-item i {
+    color: #40E0D0; /* Turquoise color for icons */
+    margin-bottom: 10px; /* Space below the icon */
+}
+
+h3 {
+    margin: 10px 0; /* Space above and below headings */
+}
+
+p {
+    color: #343a40; /* Dark text color for paragraphs */
+}
+
+/* Bunk section styles */
+.bunk-section {
+    display: flex; /* Use flexbox for layout */
+    padding: 40px; /* Padding around the section */
+    background-color: #ffffff; /* White background */
+}
+
+/* Text styles */
+.bunk-text {
+    flex: 1; /* Take up available space */
+    padding-right: 20px; /* Space between text and carousel */
+}
+
+/* Carousel styles */
+.bunk-carousel {
+    flex: 1; /* Take up available space */
+    position: relative; /* Position for overlay */
+}
+
+/* Carousel item styles */
+.carousel-item {
+    position: relative; /* Position for overlay */
+    overflow: hidden; /* Hide overflow */
+}
+
+.carousel-item img {
+    width: 100%; /* Full width */
+    border-radius: 8px; /* Rounded corners */
+    transition: transform 0.3s ease; /* Smooth transition */
+}
+
+.carousel-item:hover img {
+    transform: scale(1.05); /* Slight zoom on hover */
+}
+
+/* Overlay styles */
+.carousel-overlay {
+    position: absolute; /* Position overlay */
+    top: 0; /* Align to top */
+    left: 0; /* Align to left */
+    right: 0; /* Align to right */
+    bottom: 0; /* Align to bottom */
+    background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    color: white; /* Text color */
+    display: flex; /* Flexbox for centering */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    opacity: 0; /* Hidden by default */
+    transition: opacity 0.3s ease; /* Smooth transition */
+}
+
+.carousel-item:hover .carousel-overlay {
+    opacity: 1; /* Show overlay on hover */
+}
+
+/* Features styles */
+.bunk-features {
+    margin: 20px 0; /* Space above and below */
+    display: flex; /* Flexbox for layout */
+    justify-content: space-between; /* Space items evenly */
+}
+
+.bunk-features span {
+    background-color: #40E0D0; /* Turquoise color */
+    padding: 5px 10px; /* Padding */
+    border-radius: 5px; /* Rounded corners */
+    color: white; /* Text color */
+}
+/* Left Section - Image Slider */
+       /* Left Section - Image Slider */
+       .slider-container {
+        width: 100%;
+        overflow: hidden;
+        position: relative;
+        height: 400px;
+    }
+    
+    /* Fading effect on both sides */
+    .slider-container::before,
+    .slider-container::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        width: 15%; /* Adjust for stronger or lighter fade */
+        height: 100%;
+        z-index: 2;
+        pointer-events: none;
+    }
+    
+    .slider-container::before {
+        left: 0;
+        background: linear-gradient(to right, white, rgba(255, 255, 255, 0));
+    }
+    
+    .slider-container::after {
+        right: 0;
+        background: linear-gradient(to left, white, rgba(255, 255, 255, 0));
+    }
+    
+    .image-slider {
+        display: flex;
+        width: 400%;
+        height: 100%;
+        animation: slideImages 20s infinite ease-in-out;
+    }
+    
+    /* Individual Image Containers */
+    .image-container {
+        flex: 1;
+        position: relative;
+        width: 25%;
+        height: 100%;
+    }
+    
+    .image-container img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 10px;
+    }
+    
+    /* Hover Effect */
+    .hover-text {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        padding: 15px;
+        background: rgba(0, 0, 0, 0.7);
+        color: white;
+        font-size: 16px;
+        text-align: left;
+        opacity: 0;
+        transition: opacity 0.3s ease-in-out;
+    }
+    
+    .image-container:hover .hover-text {
+        opacity: 1;
+    }
+    
+    /* Automatic Sliding */
+    @keyframes slideImages {
+        0%, 25% { transform: translateX(0%); }
+        30%, 55%{ transform: translateX(-25%); }
+        60%, 85% { transform: translateX(-50%); }
+        90%, 100%  { transform: translateX(-75%); }
+        100% { transform: translateX(0%); }
+    }
+    
+    /* Right Section */
+    .content-section {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
