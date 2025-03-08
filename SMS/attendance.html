@@ -8,13 +8,55 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <style>
         body {
-            background-color: #e0f7fa;
+            background-color: #ffffff;
             font-family: 'Segoe UI', system-ui, sans-serif;
         }
 
         .nav {
             width: 50%;
         }
+        .hero-section{
+            animation-name: hero;
+            animation-duration: 2s;
+            animation-iteration-count:1;
+
+        }
+        @keyframes hero{
+            0%{
+                opacity: 0;
+                transform: translateY(-100px);
+            }
+            100%{
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .hero-text{
+            animation-name: heroText;
+            animation-duration: 2s;
+            animation-iteration-count:1;
+        }
+        @keyframes heroText{
+            0%{
+                opacity: 0;
+                transform: translateY(100px);
+            }
+            100%{
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+
+
+        @keyframes fadeInUp {
+    0% { opacity: 0; transform: translateY(20px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+.hero-text h1 {
+    animation: fadeInUp 1s ease-in-out;
+}
+
 
         .card {
             background: #ffffff;
@@ -34,38 +76,55 @@
         }
 
         .percentage-circle {
-            width: 120px;
-            height: 120px;
-            position: relative;
-            margin: 0 auto;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
+    width: 120px;
+    height: 120px;
+    position: relative;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
-        .circle-bg {
-            width: 100%;
-            height: 100%;
-            border-radius: 50%;
-            position: absolute;
-            border: 8px solid #f0f0f0;
-        }
+.circle-bg {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    position: absolute;
+    background: #f0f0f0; 
+}
 
-        .circle-progress {
-            width: 100%;
-            height: 100%;
-            border-radius: 50%;
-            position: absolute;
-            border: 8px solid;
-            border-color: transparent;
-            transform: rotate(-90deg);
-        }
+.circle-progress {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    position: absolute;
+    background: conic-gradient(
+        var(--progress-color) 0deg,
+        var(--progress-color) var(--rotation),
+        transparent var(--rotation),
+        transparent 360deg
+    );
+    mask: radial-gradient(
+        circle,
+        transparent 60%, 
+        black 60%,
+        black 70%, 
+        transparent 70%
+    );
+    -webkit-mask: radial-gradient(
+        circle,
+        transparent 60%,
+        black 60%,
+        black 70%,
+        transparent 70%
+    ); 
+}
 
-        .percentage-text {
-            font-size: 2rem;
-            font-weight: bold;
-            z-index: 1;
-        }
+.percentage-text {
+    font-size: 1.8rem;
+    font-weight: bold;
+    z-index: 1;
+}
 
         .good-attendance .circle-progress {
             border-top-color: #28a745;
@@ -139,11 +198,11 @@
             font-size: 2rem;
         }
 
-        .fooo {
-            background: linear-gradient(to bottom, rgba(0, 80, 120, 0.8), rgba(0, 120, 100, 0.6)), 
-                    url('back.jpg') center/cover no-repeat;
-            color: white;
-        }
+        .fooo{
+        background: linear-gradient(to bottom, rgba(0, 80, 120, 0.8), rgba(0, 120, 100, 0.6)), 
+                url('back.jfif') center/cover no-repeat;color: white;
+
+    }
 
         .circle {
             width: 50px;
@@ -168,12 +227,14 @@
         }
 
         .fooo p {
-            color: white;
+            color: black;
         }
 
         .info-section {
             padding: 60px 0;
             background: linear-gradient(to right, rgba(255,255,255,1), rgba(240, 245, 255, 0.6));
+
+            
         }
 
         .feature-icon {
@@ -233,6 +294,29 @@
             font-size: 12px;
             color: #6c757d;
         }
+        .addcrse{
+            background-color: black;
+            color: white;
+            font-weight: bold;
+        }
+        .addcrse:hover{
+            background-color: white;
+            color: black;
+            border: 1px solid black;
+            
+        }
+        .editatt{
+            background-color: white;
+            color: black;
+            border: 1px solid black;
+            font-weight: bold;
+        }
+        .editatt:hover{
+            background-color: black;
+            color: white;
+            font-weight: bold;
+            
+        }
     </style>
 </head>
 <body>
@@ -262,36 +346,19 @@
     <div class="hero-section">
         <div class="container my-5 p-4 bg-light rounded-3 fooo">
             <div class="row align-items-center">
-                <div class="col-md-6">
-                    <h2 class="fw-bold">How to Use the Calculator</h2>
-                    <p>Follow these simple steps to calculate your attendance and discover your bunking potential!</p>
+                <div class="col-md-6 hero-text">
+                    <h1 class="fw-bold display-4">Master Your Attendance with Ease.</h1>
+                    <p class="text" style="color: white;">Your ultimate tool for managing attendance and staying on top of your academic goals.</p>
+                    <p class="lead" style="color: white;">
+                        <i class="fas fa-chart-line me-2" ></i>Track your attendance in real-time.<br>
+                        <i class="fas fa-lightbulb me-2"></i>Gain insights to optimize your class schedule.<br>
+                        <i class="fas fa-smile me-2"></i>Achieve academic success with confidence.
+                    </p>
                 </div>
-                <div class="col-md-6 text-center">
-                    <img src="https://cdn.a1.art/assets/images/app_1811317900177637378/1811317900181831681/aa3ac373-b00f-46cb-b53d-bf79b25da7f9.jpeg?oldPrompt=A%20vibrant%20and%20engaging%20classroom%20scene%20where%20students%20are%20shown%20interacting%20in%20a%20lively%20environment,%20with%20one%20student%20thoughtfully%20calculating%20attendance%20on%20a%20notebook%20or%20tablet.%20The%20setting%20should%20emphasize%20a%20balance%20between%20fun%20and%20productivity,%20reflecting%20the%20idea%20of%20tracking%20attendance%20in%20a%20lighthearted%20but%20responsible%20manner.%20Background%20elements%20could%20include%20a%20chalkboard%20or%20digital%20board%20displaying%20attendance-related%20icons%20or%20numbers,%20subtly%20hinting%20at%20the%20Bunk-O-Meter%20tool%27s%20purpose." alt="Student at board" class="img-fluid rounded shadow-lg" style="height: 250px;width:500px">
-                </div>
-            </div>
-
-            <div class="row text-center mt-4">
-                <div class="col-md-4">
-                    <div class="step">
-                        <div class="circle">01</div>
-                        <h5 class="fw-bold">Enter Your Attendance Details</h5>
-                        <p>Provide the total classes held and the number of classes you attended.</p>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="step">
-                        <div class="circle">02</div>
-                        <h5 class="fw-bold">Let the Calculator Do the Math</h5>
-                        <p>We’ll instantly compute your attendance percentage and bunking limit.</p>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="step">
-                        <div class="circle">03</div>
-                        <h5 class="fw-bold">Get Personalized Tips</h5>
-                        <p>Receive advice on staying within your safe attendance threshold.</p>
-                    </div>
+                <div class="col-md-6 text-center" >
+                    <!-- Add your image here 
+                    <img src="https://st2.depositphotos.com/5425740/42772/v/450/depositphotos_427721736-stock-illustration-group-friends-university-fellow-students.jpg" alt="Fun student illustration" class="img-fluid rounded shadow-lg" style="max-height: 300px; background-blend-mode: color-burn;">  -->
+                    <a href="#courseCards" class="btn bg-dark text-white btn-lg mt-3" style="width: 30%; height: 50%;" >Get Started</a>
                 </div>
             </div>
         </div>
@@ -301,8 +368,8 @@
         <h2 class="text-center mb-4">Subject Dashboard</h2>
         
         <div class="d-flex justify-content-center action-buttons mb-4">
-            <button class="btn btn-primary" onclick="toggleForm('addCourseForm')">Add Course</button>
-            <button class="btn btn-secondary ms-3" onclick="toggleForm('editAttendanceForm')">Edit Attendance</button>
+            <button class="btn  addcrse" onclick="toggleForm('addCourseForm')">Add Course</button>
+            <button class="btn btn-secondary ms-3 editatt" onclick="toggleForm('editAttendanceForm')">Edit Attendance</button>
         </div>
 
         <div id="addCourseForm" class="form-container card p-4">
@@ -355,7 +422,6 @@
         </div>
 
         <div id="courseCards" class="row g-4">
-            <!-- Cards will be dynamically added here -->
         </div>
     </div>
 
@@ -539,7 +605,7 @@ async function loadAttendanceFromBackend() {
 }
         function calculateRotation(percentage) {
             const degrees = (percentage / 100) * 360;
-            return `rotate(${degrees}deg)`;
+            return degrees;
         }
 
         function addCourse(event) {
@@ -603,67 +669,79 @@ function editAttendance(event) {
         alert("Course not found!");
     }
 }
-        function updateCards() {
-            const container = document.getElementById("courseCards");
-            container.innerHTML = "";
+        
+function updateCards() {
+    const container = document.getElementById("courseCards");
+    container.innerHTML = "";
 
-            courses.forEach((course) => {
-                const percentage = parseFloat(course.percentage);
-                const attendanceClass = getAttendanceClass(percentage);
-                const statusClass = getStatusClass(percentage);
-                const statusMessage = getAttendanceStatus(percentage, course.delivered, course.attended, course.dl, course.ml);
-                const rotation = calculateRotation(percentage);
-                
-                const card = `
-                    <div class="col-md-4">
-                        <div class="card subject-card h-100">
-                            <div class="card-body">
-                                <div class="percentage-circle ${attendanceClass} mb-3">
-                                    <div class="circle-bg"></div>
-                                    <div class="circle-progress" style="transform: ${rotation}"></div>
-                                    <span class="percentage-text">${course.percentage}%</span>
+    courses.forEach((course) => {
+        const percentage = parseFloat(course.percentage);
+        const attendanceClass = getAttendanceClass(percentage);
+        const statusClass = getStatusClass(percentage);
+        const statusMessage = getAttendanceStatus(percentage, course.delivered, course.attended, course.dl, course.ml);
+        const rotation = (percentage / 100) * 360; // Calculate rotation in degrees
+
+        // Determine the progress color based on attendance percentage
+        let progressColor;
+        if (percentage >= 75) {
+            progressColor = "#28a745"; // Green for good attendance
+        } else if (percentage >= 65) {
+            progressColor = "#ffc107"; // Yellow for warning
+        } else {
+            progressColor = "#dc3545"; // Red for poor attendance
+        }
+
+        const card = `
+            <div class="col-md-4">
+                <div class="card subject-card h-100">
+                    <div class="card-body">
+                        <div class="percentage-circle ${attendanceClass} mb-3" 
+                             style="--rotation: ${rotation}deg; --progress-color: ${progressColor}">
+                            <div class="circle-bg"></div>
+                            <div class="circle-progress"></div>
+                            <span class="percentage-text">${course.percentage}%</span>
+                        </div>
+                        <h5 class="card-title text-center mb-3">${course.courseName} (${course.courseCode})</h5>
+                        <div class="row g-2">
+                            <div class="col-6">
+                                <div class="stats-item">
+                                    <div class="stats-label">Delivered</div>
+                                    <div class="stats-value">${course.delivered}</div>
                                 </div>
-                                <h5 class="card-title text-center mb-3">${course.courseName} (${course.courseCode})</h5>
-                                <div class="row g-2">
-                                    <div class="col-6">
-                                        <div class="stats-item">
-                                            <div class="stats-label">Delivered</div>
-                                            <div class="stats-value">${course.delivered}</div>
-                                        </div>
-                                    </div>
-                                    <div class="col-6">
-                                        <div class="stats-item">
-                                            <div class="stats-label">Attended</div>
-                                            <div class="stats-value">${course.attended}</div>
-                                        </div>
-                                    </div>
-                                    <div class="col-6">
-                                        <div class="stats-item">
-                                            <div class="stats-label">DL</div>
-                                            <div class="stats-value">${course.dl}</div>
-                                        </div>
-                                    </div>
-                                    <div class="col-6">
-                                        <div class="stats-item">
-                                            <div class="stats-label">ML</div>
-                                            <div class="stats-value">${course.ml}</div>
-                                        </div>
-                                    </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="stats-item">
+                                    <div class="stats-label">Attended</div>
+                                    <div class="stats-value">${course.attended}</div>
                                 </div>
-                                <div class="attendance-status ${statusClass}">
-                                    ${statusMessage}
+                            </div>
+                            <div class="col-6">
+                                <div class="stats-item">
+                                    <div class="stats-label">DL</div>
+                                    <div class="stats-value">${course.dl}</div>
                                 </div>
-                                <div class="mt-3">
-                                    <p class="mb-1"><i class="fas fa-user me-2"></i>${course.teacherName}</p>
-                                    <p class="mb-0"><i class="fas fa-calendar me-2"></i>${course.courseStartDate}</p>
+                            </div>
+                            <div class="col-6">
+                                <div class="stats-item">
+                                    <div class="stats-label">ML</div>
+                                    <div class="stats-value">${course.ml}</div>
                                 </div>
                             </div>
                         </div>
+                        <div class="attendance-status ${statusClass}">
+                            ${statusMessage}
+                        </div>
+                        <div class="mt-3">
+                            <p class="mb-1"><i class="fas fa-user me-2"></i>${course.teacherName}</p>
+                            <p class="mb-0"><i class="fas fa-calendar me-2"></i>${course.courseStartDate}</p>
+                        </div>
                     </div>
-                `;
-                container.innerHTML += card;
-            });
-        }
+                </div>
+            </div>
+        `;
+        container.innerHTML += card;
+    });
+}
 
 
         // Load attendance data when the page loads
