@@ -1,0 +1,63 @@
+{
+  "harpuneet": [
+    {
+      "courseName": "Java",
+      "teacherName": "Vijaita Kashyap",
+      "courseStartDate": "2025-03-07",
+      "courseCode": "231099",
+      "delivered": 99,
+      "attended": 87,
+      "percentage": "87.88",
+      "dl": 0,
+      "ml": 0
+    },
+    {
+      "courseName": "oose",
+      "teacherName": "Vijaita Kashyap",
+      "courseStartDate": "2025-03-07",
+      "courseCode": "2222",
+      "delivered": 55,
+      "attended": 44,
+      "percentage": "80.00",
+      "dl": 0,
+      "ml": 0
+    }
+  ],
+  "test007": [
+    {
+      "courseName": "oose",
+      "teacherName": "Vijaita Kashyap",
+      "courseStartDate": "2025-03-07",
+      "courseCode": "231099",
+      "delivered": 33,
+      "attended": 22,
+      "percentage": "75.76",
+      "dl": 2,
+      "ml": 1
+    }
+  ],
+  "khushleen": [
+    {
+      "courseName": "Java",
+      "teacherName": "Vijaita Kashyap",
+      "courseStartDate": "2025-03-08",
+      "courseCode": "231099",
+      "delivered": 133,
+      "attended": 90,
+      "percentage": "75.19",
+      "dl": 9,
+      "ml": 1
+    },
+    {
+      "courseName": "OOSE",
+      "teacherName": "Vijaita Kashyap",
+      "courseStartDate": "2025-03-08",
+      "courseCode": "2222",
+      "delivered": 50,
+      "attended": 39,
+      "percentage": "94.00",
+      "dl": 7,
+      "ml": 1
+    }
+  ]
+}
