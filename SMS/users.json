@@ -33,5 +33,15 @@
     "username": "lakshay",
     "email": "lakshay@test.com",
     "password": "1234"
+  },
+  {
+    "username": "cat",
+    "email": "cat@gmail.com",
+    "password": "6666"
+  },
+  {
+    "username": "Khushal",
+    "email": "khushal@gmail.com",
+    "password": "1234"
   }
 ]

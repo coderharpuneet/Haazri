@@ -44,7 +44,7 @@ app.post("/login", (req, res) => {
     }
 
     req.session.user = { username: user.username, email: user.email };
-    res.json({ message: "Login successful", redirectUrl: `/attendance.html?username=${username}` });
+    res.json({ message: "Login successful", redirectUrl: `../public/attendance.html?username=${username}` });
 });
 
 app.post("/signup", (req, res) => {

@@ -16,9 +16,9 @@
       "teacherName": "Vijaita Kashyap",
       "courseStartDate": "2025-03-07",
       "courseCode": "2222",
-      "delivered": 63,
-      "attended": 44,
-      "percentage": "69.84",
+      "delivered": 119,
+      "attended": 56,
+      "percentage": "47.06",
       "dl": 0,
       "ml": 0
     }
@@ -81,6 +81,43 @@
       "attended": 0,
       "percentage": "0",
       "dl": 0,
+      "ml": 0
+    }
+  ],
+  "cat": [
+    {
+      "courseName": "OOSE",
+      "teacherName": "Vijaita Kashyap",
+      "courseStartDate": "2025-03-08",
+      "courseCode": "231099",
+      "delivered": 0,
+      "attended": 0,
+      "percentage": "0",
+      "dl": 0,
+      "ml": 0
+    },
+    {
+      "courseName": "Java",
+      "teacherName": "Jai",
+      "courseStartDate": "2025-03-08",
+      "courseCode": "2222",
+      "delivered": 128,
+      "attended": 99,
+      "percentage": "82.81",
+      "dl": 7,
+      "ml": 0
+    }
+  ],
+  "Khushal": [
+    {
+      "courseName": "CASA",
+      "teacherName": "Neha Kumra",
+      "courseStartDate": "2025-03-09",
+      "courseCode": "231099",
+      "delivered": 65,
+      "attended": 54,
+      "percentage": "84.62",
+      "dl": 1,
       "ml": 0
     }
   ]
