@@ -120,5 +120,18 @@
       "dl": 1,
       "ml": 0
     }
+  ],
+  "Namir": [
+    {
+      "courseName": "DSA",
+      "teacherName": "Vijaita Kashyap",
+      "courseStartDate": "2025-03-10",
+      "courseCode": "231099",
+      "delivered": 69,
+      "attended": 42,
+      "percentage": "60.87",
+      "dl": 0,
+      "ml": 0
+    }
   ]
 }
