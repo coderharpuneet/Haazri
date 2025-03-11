@@ -241,8 +241,6 @@
             transform: translateX(800px);
         }
 
-        /* ANIMATION */
-
         .container.sign-up-mode:before {
             transform: translate(100%, -50%);
             right: 52%;
@@ -426,7 +424,6 @@
     <div class="container">
         <div class="forms-container">
             <div class="signin-signup">
-                <!-- Login Form -->
                 <form id="loginForm" class="sign-in-form">
                     <h2 class="title">Login</h2>
                     <div class="input-field">
@@ -443,7 +440,6 @@
                     <div id="loginMessage" class="message"></div>
                 </form>
 
-                <!-- Signup Form -->
                 <form id="signupForm" class="sign-up-form">
                     <h2 class="title">Sign up</h2>
                     <div class="input-field">
@@ -491,7 +487,6 @@
         const sign_up_btn = document.querySelector('#sign-up-btn');
         const container = document.querySelector('.container');
 
-        // Toggle between login and signup forms
         sign_up_btn.addEventListener('click', () => {
             container.classList.add('sign-up-mode');
         });
@@ -500,7 +495,6 @@
             container.classList.remove('sign-up-mode');
         });
 
-        // Login Form Submission
 document.getElementById('loginForm').addEventListener('submit', async (e) => {
     e.preventDefault();
     const username = document.getElementById('loginUsername').value;
@@ -515,7 +509,6 @@ document.getElementById('loginForm').addEventListener('submit', async (e) => {
     if (response.ok) {
         loginMessage.textContent = result.message;
         loginMessage.style.color = 'green';
-        // Redirect to the URL provided by the server
         window.location.href = result.redirectUrl;
     } else {
         loginMessage.textContent = result.message;
@@ -523,7 +516,6 @@ document.getElementById('loginForm').addEventListener('submit', async (e) => {
     }
 });
 
-        // Signup Form Submission
         document.getElementById('signupForm').addEventListener('submit', async (e) => {
             e.preventDefault();
             const username = document.getElementById('signupUsername').value;

@@ -4,12 +4,10 @@
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>Haazri Attendance Manager</title>
-		<!-- Bootstrap CSS -->
 		<link
 			href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
 			rel="stylesheet"
 		/>
-		<!-- Google Fonts for beautiful text -->
 		<link
 			href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap"
 			rel="stylesheet"
@@ -196,7 +194,6 @@
 	</head>
 
 	<body>
-		<!-- Navbar -->
 		<nav class="navbar navbar-expand-lg navbar-light bg-light mx-auto nav">
 			<div class="container-fluid">
 				<img
@@ -226,7 +223,6 @@
 			</div>
 		</nav>
 
-		<!-- Event Section -->
 		<div class="container event-section">
 			<div class="event-image">
 				<img src="../assets/dl.svg" alt="Event Image" class="dl-img" />
@@ -241,12 +237,10 @@
 			</div>
 		</div>
 
-		<!-- Add Event Button -->
 		<button class="add-event-btn" onclick="toggleAddEventForm()">
 			Add Event
 		</button>
 
-		<!-- Add Event Form -->
 		<div class="add-event-form" id="addEventForm">
 			<h3>Enter Event Details</h3>
 			<input
@@ -268,7 +262,6 @@
 			</button>
 		</div>
 
-		<!-- Preloaded Event Cards -->
 		<div class="cards-container" id="eventsContainer">
 			<div class="card">
 				<img src="./hwh-event.png" alt="Event Image" />
@@ -301,7 +294,6 @@
 			</div>
 		</div>
 
-		<!-- Bootstrap JS & Dependencies -->
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 
 		<script>
@@ -321,7 +313,6 @@
 				const organizerEmail = document.getElementById('organizerEmail').value;
 				const eventImage = document.getElementById('eventImage').files[0];
 
-				// Create a new event card element
 				const cardContainer = document.createElement('div');
 				cardContainer.classList.add('card');
 
@@ -340,7 +331,7 @@
 
 				const cardTime = document.createElement('p');
 				cardTime.classList.add('card-time');
-				cardTime.textContent = '9 AM - 4 PM'; // Example time
+				cardTime.textContent = '9 AM - 4 PM';
 				cardBody.appendChild(cardTime);
 
 				const cardDescription = document.createElement('p');
@@ -360,9 +351,6 @@
 
 				document.getElementById('eventsContainer').appendChild(cardContainer);
 
-
-
-    // Function to get query parameters from the URL
     function getQueryParams() {
         const params = {};
         window.location.search
@@ -375,18 +363,14 @@
         return params;
     }
 
-    // Retrieve the username from the URL
     const queryParams = getQueryParams();
     const username = queryParams.username;
 
-    // Function to handle event selection
     async function selectEvent(eventName) {
-        // Disable the button for the selected event
         const eventButton = document.querySelector(`button[data-event="${eventName}"]`);
         eventButton.disabled = true;
         eventButton.textContent = "Event Selected";
 
-        // Send the event selection to the backend
         const response = await fetch('http://localhost:3001/selectEvent', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -401,7 +385,6 @@
         }
     }
 
-    // Add event listeners to all "Select this Event" buttons
     document.addEventListener("DOMContentLoaded", () => {
         const eventButtons = document.querySelectorAll('.btn-success');
         eventButtons.forEach((button) => {
@@ -412,12 +395,8 @@
         });
     });
 
-    
-
-    // You can now use the username as needed
     console.log("Username:", username);
 
-    // Example: Display the username in the page
     document.addEventListener("DOMContentLoaded", () => {
         const usernameDisplay = document.createElement('div');
         usernameDisplay.textContent = `Welcome, ${username}`;
@@ -425,7 +404,6 @@
         usernameDisplay.style.fontWeight = 'bold';
         document.body.insertBefore(usernameDisplay, document.body.firstChild);
     });
-				// Close the form after submission
 				closeAddEventForm();
 			}
 		</script>

@@ -619,14 +619,12 @@
 				</div>
 				<div class="row mt-2">
 					<div class="col-12 made-in">
-						<!-- Made in India -->
 					</div>
 				</div>
 			</div>
 		</footer>
 
 		<script>
-			// Function to get query parameters from the URL
 			function getQueryParams() {
     const params = {};
     window.location.search
@@ -639,11 +637,9 @@
     return params;
 }
 
-			// Retrieve the username from the URL
 			const queryParams = getQueryParams();
 			const username = queryParams.username;
 
-			// Load attendance data when the page loads
 			window.onload = () => {
 				loadAttendanceFromBackend();
 			};
@@ -686,7 +682,7 @@
 					while (totalAttended / (delivered + bunkableClasses) > 0.75) {
 						bunkableClasses++;
 					}
-					bunkableClasses--; // Adjust to the last valid number of bunkable classes
+					bunkableClasses--;
 					if (bunkableClasses > 0) {
 						return `Great job! Your attendance is above 75%. You can bunk ${bunkableClasses} classes.`;
 					} else {
@@ -704,8 +700,7 @@
 					return `Oh no! Your attendance is below 75%. You need to attend ${requiredClasses} more classes to reach the target.`;
 				}
 			}
-			// Function to save attendance data to the backend
-			// Function to save attendance data to the backend
+
 			async function saveAttendanceToBackend() {
 				const response = await fetch('http://localhost:3001/saveAttendance', {
 					method: 'POST',
@@ -717,8 +712,6 @@
 				console.log(result.message);
 			}
 
-			// Function to load attendance data from the backend
-			// Function to load attendance data from the backend
 			async function loadAttendanceFromBackend() {
 				const response = await fetch(
 					`http://localhost:3001/loadAttendance?username=${username}`
@@ -760,7 +753,6 @@
 				document.getElementById('addCourseForm').style.display = 'none';
 				event.target.reset();
 
-				// Save the updated courses to the backend
 				saveAttendanceToBackend();
 			}
 
@@ -798,7 +790,6 @@
 					document.getElementById('editAttendanceForm').style.display = 'none';
 					event.target.reset();
 
-					// Save the updated courses to the backend
 					saveAttendanceToBackend();
 				} else {
 					alert('Course not found!');
@@ -820,16 +811,15 @@
 						course.dl,
 						course.ml
 					);
-					const rotation = (percentage / 100) * 360; // Calculate rotation in degrees
+					const rotation = (percentage / 100) * 360;
 
-					// Determine the progress color based on attendance percentage
 					let progressColor;
 					if (percentage >= 75) {
-						progressColor = '#28a745'; // Green for good attendance
+						progressColor = '#28a745';
 					} else if (percentage >= 65) {
-						progressColor = '#ffc107'; // Yellow for warning
+						progressColor = '#ffc107';
 					} else {
-						progressColor = '#dc3545'; // Red for poor attendance
+						progressColor = '#dc3545';
 					}
 
 					const card = `
@@ -884,7 +874,6 @@
 				});
 			}
 
-			// Load attendance data when the page loads
 			window.onload = () => {
 				loadAttendanceFromBackend();
 			};
