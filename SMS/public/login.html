@@ -501,26 +501,27 @@
         });
 
         // Login Form Submission
-        document.getElementById('loginForm').addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const username = document.getElementById('loginUsername').value;
-            const password = document.getElementById('loginPassword').value;
-            const response = await fetch('http://localhost:3001/login', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ username, password }),
-            });
-            const result = await response.json();
-            const loginMessage = document.getElementById('loginMessage');
-            if (response.ok) {
-                loginMessage.textContent = result.message;
+document.getElementById('loginForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const username = document.getElementById('loginUsername').value;
+    const password = document.getElementById('loginPassword').value;
+    const response = await fetch('http://localhost:3001/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username, password }),
+    });
+    const result = await response.json();
+    const loginMessage = document.getElementById('loginMessage');
+    if (response.ok) {
+        loginMessage.textContent = result.message;
         loginMessage.style.color = 'green';
-                window.location.href = result.redirectUrl;
-            } else {
-                loginMessage.textContent = result.message;
+        // Redirect to the URL provided by the server
+        window.location.href = result.redirectUrl;
+    } else {
+        loginMessage.textContent = result.message;
         loginMessage.style.color = 'red';
-            }
-        });
+    }
+});
 
         // Signup Form Submission
         document.getElementById('signupForm').addEventListener('submit', async (e) => {

@@ -1,697 +1,838 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Subject Cards</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <style>
-        body {
-            background-color: #ffffff;
-            font-family: 'Segoe UI', system-ui, sans-serif;
-        }
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Subject Cards</title>
+		<link
+			href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+			rel="stylesheet"
+		/>
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+		/>
+		<style>
+			body {
+				background-color: #ffffff;
+				font-family: 'Segoe UI', system-ui, sans-serif;
+			}
 
-        .nav {
-            width: 50%;
-        }
-        .hero-section{
-            animation-name: hero;
-            animation-duration: 2s;
-            animation-iteration-count:1;
+			.nav {
+				width: 70%;
+			}
+			.hero-section {
+				animation-name: hero;
+				animation-duration: 2s;
+				animation-iteration-count: 1;
+			}
+			@keyframes hero {
+				0% {
+					opacity: 0;
+					transform: translateY(-100px);
+				}
+				100% {
+					opacity: 1;
+					transform: translateY(0);
+				}
+			}
+			.hero-text {
+				animation-name: heroText;
+				animation-duration: 2s;
+				animation-iteration-count: 1;
+			}
+			@keyframes heroText {
+				0% {
+					opacity: 0;
+					transform: translateY(100px);
+				}
+				100% {
+					opacity: 1;
+					transform: translateY(0);
+				}
+			}
 
-        }
-        @keyframes hero{
-            0%{
-                opacity: 0;
-                transform: translateY(-100px);
-            }
-            100%{
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        .hero-text{
-            animation-name: heroText;
-            animation-duration: 2s;
-            animation-iteration-count:1;
-        }
-        @keyframes heroText{
-            0%{
-                opacity: 0;
-                transform: translateY(100px);
-            }
-            100%{
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
+			@keyframes fadeInUp {
+				0% {
+					opacity: 0;
+					transform: translateY(20px);
+				}
+				100% {
+					opacity: 1;
+					transform: translateY(0);
+				}
+			}
+			.hero-text h1 {
+				animation: fadeInUp 1s ease-in-out;
+			}
 
+			.card {
+				background: #ffffff;
+				border: none;
+				border-radius: 15px;
+				box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+				transition: transform 0.2s ease-in-out;
+				margin-bottom: 20px;
+			}
 
+			.card:hover {
+				transform: translateY(-5px);
+			}
 
-        @keyframes fadeInUp {
-    0% { opacity: 0; transform: translateY(20px); }
-    100% { opacity: 1; transform: translateY(0); }
-}
-.hero-text h1 {
-    animation: fadeInUp 1s ease-in-out;
-}
+			.subject-card {
+				background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+			}
 
+			.percentage-circle {
+				width: 120px;
+				height: 120px;
+				position: relative;
+				margin: 0 auto;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+			}
 
-        .card {
-            background: #ffffff;
-            border: none;
-            border-radius: 15px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            transition: transform 0.2s ease-in-out;
-            margin-bottom: 20px;
-        }
+			.circle-bg {
+				width: 100%;
+				height: 100%;
+				border-radius: 50%;
+				position: absolute;
+				background: #f0f0f0;
+			}
 
-        .card:hover {
-            transform: translateY(-5px);
-        }
+			.circle-progress {
+				width: 100%;
+				height: 100%;
+				border-radius: 50%;
+				position: absolute;
+				background: conic-gradient(
+					var(--progress-color) 0deg,
+					var(--progress-color) var(--rotation),
+					transparent var(--rotation),
+					transparent 360deg
+				);
+				mask: radial-gradient(
+					circle,
+					transparent 60%,
+					black 60%,
+					black 70%,
+					transparent 70%
+				);
+				-webkit-mask: radial-gradient(
+					circle,
+					transparent 60%,
+					black 60%,
+					black 70%,
+					transparent 70%
+				);
+			}
 
-        .subject-card {
-            background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
-        }
+			.percentage-text {
+				font-size: 1.8rem;
+				font-weight: bold;
+				z-index: 1;
+			}
 
-        .percentage-circle {
-    width: 120px;
-    height: 120px;
-    position: relative;
-    margin: 0 auto;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
+			.good-attendance .circle-progress {
+				border-top-color: #28a745;
+				border-right-color: #28a745;
+			}
 
-.circle-bg {
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-    position: absolute;
-    background: #f0f0f0; 
-}
+			.warning-attendance .circle-progress {
+				border-top-color: #ffc107;
+				border-right-color: #ffc107;
+			}
 
-.circle-progress {
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-    position: absolute;
-    background: conic-gradient(
-        var(--progress-color) 0deg,
-        var(--progress-color) var(--rotation),
-        transparent var(--rotation),
-        transparent 360deg
-    );
-    mask: radial-gradient(
-        circle,
-        transparent 60%, 
-        black 60%,
-        black 70%, 
-        transparent 70%
-    );
-    -webkit-mask: radial-gradient(
-        circle,
-        transparent 60%,
-        black 60%,
-        black 70%,
-        transparent 70%
-    ); 
-}
+			.poor-attendance .circle-progress {
+				border-top-color: #dc3545;
+				border-right-color: #dc3545;
+			}
 
-.percentage-text {
-    font-size: 1.8rem;
-    font-weight: bold;
-    z-index: 1;
-}
+			.form-container {
+				display: none;
+				margin-bottom: 2rem;
+			}
 
-        .good-attendance .circle-progress {
-            border-top-color: #28a745;
-            border-right-color: #28a745;
-        }
+			.action-buttons {
+				gap: 1rem;
+			}
 
-        .warning-attendance .circle-progress {
-            border-top-color: #ffc107;
-            border-right-color: #ffc107;
-        }
+			.stats-item {
+				text-align: center;
+				padding: 0.5rem;
+				border-radius: 8px;
+				background-color: #f8f9fa;
+			}
 
-        .poor-attendance .circle-progress {
-            border-top-color: #dc3545;
-            border-right-color: #dc3545;
-        }
+			.stats-label {
+				font-size: 0.875rem;
+				color: #6c757d;
+				margin-bottom: 0.25rem;
+			}
 
-        .form-container {
-            display: none;
-            margin-bottom: 2rem;
-        }
+			.stats-value {
+				font-size: 1.25rem;
+				font-weight: bold;
+				color: #212529;
+			}
 
-        .action-buttons {
-            gap: 1rem;
-        }
+			.attendance-status {
+				margin-top: 1rem;
+				padding: 1rem;
+				border-radius: 8px;
+				text-align: center;
+			}
 
-        .stats-item {
-            text-align: center;
-            padding: 0.5rem;
-            border-radius: 8px;
-            background-color: #f8f9fa;
-        }
+			.status-good {
+				background-color: #d4edda;
+				color: #155724;
+			}
 
-        .stats-label {
-            font-size: 0.875rem;
-            color: #6c757d;
-            margin-bottom: 0.25rem;
-        }
+			.status-warning {
+				background-color: #fff3cd;
+				color: #856404;
+			}
 
-        .stats-value {
-            font-size: 1.25rem;
-            font-weight: bold;
-            color: #212529;
-        }
+			.status-poor {
+				background-color: #f8d7da;
+				color: #721c24;
+			}
 
-        .attendance-status {
-            margin-top: 1rem;
-            padding: 1rem;
-            border-radius: 8px;
-            text-align: center;
-        }
+			.no-courses-message {
+				text-align: center;
+				color: red;
+				font-weight: bold;
+				font-size: 2rem;
+			}
 
-        .status-good {
-            background-color: #d4edda;
-            color: #155724;
-        }
+			.fooo {
+				background: linear-gradient(
+						to bottom,
+						rgba(0, 80, 120, 0.8),
+						rgba(0, 120, 100, 0.6)
+					),
+					url('../assets/back.jfif') center/cover no-repeat;
+				color: white;
+			}
 
-        .status-warning {
-            background-color: #fff3cd;
-            color: #856404;
-        }
+			.circle {
+				width: 50px;
+				height: 50px;
+				background-color: #198754;
+				color: white;
+				font-weight: bold;
+				border-radius: 50%;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				margin: 0 auto 10px;
+				font-size: 1.2rem;
+			}
 
-        .status-poor {
-            background-color: #f8d7da;
-            color: #721c24;
-        }
+			.step h5 {
+				margin-top: 10px;
+			}
 
-        .no-courses-message {
-            text-align: center;
-            color: red;
-            font-weight: bold;
-            font-size: 2rem;
-        }
+			.step p {
+				color: #555;
+			}
 
-        .fooo{
-        background: linear-gradient(to bottom, rgba(0, 80, 120, 0.8), rgba(0, 120, 100, 0.6)), 
-                url('../assets/back.jfif') center/cover no-repeat;color: white;
+			.fooo p {
+				color: black;
+			}
 
-    }
+			.info-section {
+				padding: 60px 0;
+				background: linear-gradient(
+					to right,
+					rgba(255, 255, 255, 1),
+					rgba(240, 245, 255, 0.6)
+				);
+			}
 
-        .circle {
-            width: 50px;
-            height: 50px;
-            background-color: #198754;
-            color: white;
-            font-weight: bold;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 10px;
-            font-size: 1.2rem;
-        }
+			.feature-icon {
+				font-size: 24px;
+				color: teal;
+			}
 
-        .step h5 {
-            margin-top: 10px;
-        }
+			.testimonial {
+				background: white;
+				padding: 20px;
+				border-radius: 10px;
+				box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.1);
+			}
 
-        .step p {
-            color: #555;
-        }
+			.testimonial img {
+				width: 40px;
+				height: 40px;
+				border-radius: 50%;
+				margin-right: 10px;
+			}
 
-        .fooo p {
-            color: black;
-        }
+			.footer {
+				background-color: #004d40;
+				color: #ffffff;
+				padding: 40px 0;
+				text-align: center;
+			}
 
-        .info-section {
-            padding: 60px 0;
-            background: linear-gradient(to right, rgba(255,255,255,1), rgba(240, 245, 255, 0.6));
+			.footer a {
+				text-decoration: none;
+				color: #ffffff;
+				font-weight: 500;
+				margin: 0 15px;
+			}
 
-            
-        }
+			.footer a:hover {
+				text-decoration: underline;
+			}
 
-        .feature-icon {
-            font-size: 24px;
-            color: teal;
-        }
+			.social-icons a {
+				font-size: 20px;
+				margin: 0 10px;
+				color: #ffffff;
+			}
 
-        .testimonial {
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0px 5px 20px rgba(0,0,0,0.1);
-        }
+			.social-icons a:hover {
+				color: #007bff;
+			}
 
-        .testimonial img {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            margin-right: 10px;
-        }
+			.footer-text {
+				font-size: 14px;
+				margin-top: 10px;
+				color: #6c757d;
+			}
 
-        .footer {
-            background-color: #004d40;
-            color: #ffffff;
-            padding: 40px 0;
-            text-align: center;
-        }
+			.made-in {
+				font-size: 12px;
+				color: #6c757d;
+			}
+			.addcrse {
+				background-color: black;
+				color: white;
+				font-weight: bold;
+			}
+			.addcrse:hover {
+				background-color: white;
+				color: black;
+				border: 1px solid black;
+			}
+			.editatt {
+				background-color: white;
+				color: black;
+				border: 1px solid black;
+				font-weight: bold;
+			}
+			.editatt:hover {
+				background-color: black;
+				color: white;
+				font-weight: bold;
+			}
+		</style>
+	</head>
+	<body>
+		<nav class="navbar navbar-expand-lg navbar-light bg-light mx-auto nav">
+			<div class="container-fluid">
+				<img
+					src="https://via.placeholder.com/50"
+					alt="Logo"
+					class="d-inline-block align-text-top rounded-circle"
+				/>
+				<a class="navbar-brand ms-2" href="#">Haaज़री</a>
+				<button
+					class="navbar-toggler"
+					type="button"
+					data-bs-toggle="collapse"
+					data-bs-target="#navbarNav"
+				>
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navbarNav">
+					<ul class="navbar-nav ms-auto">
+						<li class="nav-item">
+							<a class="nav-link" href="#">Home</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="#">Calculator</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link btn btn-success text-white" href="#"
+								>Install</a
+							>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</nav>
 
-        .footer a {
-            text-decoration: none;
-            color: #ffffff;
-            font-weight: 500;
-            margin: 0 15px;
-        }
+		<div class="hero-section">
+			<div class="container my-5 p-4 bg-light rounded-3 fooo">
+				<div class="row align-items-center">
+					<div class="col-md-6 hero-text">
+						<h1 class="fw-bold display-4">Master Your Attendance with Ease.</h1>
+						<p class="text" style="color: white">
+							Your ultimate tool for managing attendance and staying on top of
+							your academic goals.
+						</p>
+						<p class="lead" style="color: white">
+							<i class="fas fa-chart-line me-2"></i>Track your attendance in
+							real-time.<br />
+							<i class="fas fa-lightbulb me-2"></i>Gain insights to optimize
+							your class schedule.<br />
+							<i class="fas fa-smile me-2"></i>Achieve academic success with
+							confidence.
+						</p>
+					</div>
+					<div class="col-md-6 text-center">
+						<a
+							href="#courseCards"
+							class="btn bg-dark text-white btn-lg mt-3"
+							style="width: 30%; height: 50%"
+							>Get Started</a
+						>
+					</div>
+				</div>
+			</div>
+		</div>
 
-        .footer a:hover {
-            text-decoration: underline;
-        }
+		<div class="container py-5">
+			<h2 class="text-center mb-4">Subject Dashboard</h2>
 
-        .social-icons a {
-            font-size: 20px;
-            margin: 0 10px;
-            color: #ffffff;
-        }
+			<div class="d-flex justify-content-center action-buttons mb-4">
+				<button class="btn addcrse" onclick="toggleForm('addCourseForm')">
+					Add Course
+				</button>
+				<button
+					class="btn btn-secondary ms-3 editatt"
+					onclick="toggleForm('editAttendanceForm')"
+				>
+					Edit Attendance
+				</button>
+				<button
+    class="btn btn-secondary ms-3 editatt"
+    onclick="window.location.href='dl.html?username=' + encodeURIComponent(username);"
+>
+    Upcoming Events
+</button>
+			</div>
 
-        .social-icons a:hover {
-            color: #007bff;
-        }
+			<div id="addCourseForm" class="form-container card p-4">
+				<h5 class="mb-3">Add New Course</h5>
+				<form onsubmit="addCourse(event)">
+					<div class="row g-3">
+						<div class="col-md-6">
+							<input
+								type="text"
+								class="form-control"
+								id="teacherName"
+								placeholder="Teacher Name"
+								required
+							/>
+						</div>
+						<div class="col-md-6">
+							<input
+								type="date"
+								class="form-control"
+								id="courseStartDate"
+								required
+							/>
+						</div>
+						<div class="col-md-6">
+							<input
+								type="text"
+								class="form-control"
+								id="courseName"
+								placeholder="Course Name"
+								required
+							/>
+						</div>
+						<div class="col-md-6">
+							<input
+								type="text"
+								class="form-control"
+								id="courseCode"
+								placeholder="Course Code"
+								required
+							/>
+						</div>
+						<div class="col-12">
+							<button type="submit" class="btn btn-success w-100">
+								Add Course
+							</button>
+						</div>
+					</div>
+				</form>
+			</div>
 
-        .footer-text {
-            font-size: 14px;
-            margin-top: 10px;
-            color: #6c757d;
-        }
+			<div id="editAttendanceForm" class="form-container card p-4">
+				<h5 class="mb-3">Update Attendance</h5>
+				<form onsubmit="editAttendance(event)">
+					<div class="row g-3">
+						<div class="col-md-6">
+							<input
+								type="text"
+								class="form-control"
+								id="subject"
+								placeholder="Subject"
+								required
+							/>
+						</div>
+						<div class="col-md-6">
+							<input
+								type="number"
+								class="form-control"
+								id="deliveredLectures"
+								placeholder="Delivered Lectures"
+								required
+							/>
+						</div>
+						<div class="col-md-6">
+							<input
+								type="number"
+								class="form-control"
+								id="attendedLectures"
+								placeholder="Attended Lectures"
+								required
+							/>
+						</div>
+						<div class="col-md-6">
+							<input
+								type="number"
+								class="form-control"
+								id="approvedDL"
+								placeholder="Approved DL"
+							/>
+						</div>
+						<div class="col-12">
+							<input
+								type="number"
+								class="form-control"
+								id="approvedML"
+								placeholder="Approved ML"
+							/>
+						</div>
+						<div class="col-12">
+							<button type="submit" class="btn btn-warning w-100">
+								Update Attendance
+							</button>
+						</div>
+					</div>
+				</form>
+			</div>
 
-        .made-in {
-            font-size: 12px;
-            color: #6c757d;
-        }
-        .addcrse{
-            background-color: black;
-            color: white;
-            font-weight: bold;
-        }
-        .addcrse:hover{
-            background-color: white;
-            color: black;
-            border: 1px solid black;
-            
-        }
-        .editatt{
-            background-color: white;
-            color: black;
-            border: 1px solid black;
-            font-weight: bold;
-        }
-        .editatt:hover{
-            background-color: black;
-            color: white;
-            font-weight: bold;
-            
-        }
-    </style>
-</head>
-<body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light mx-auto nav">
-        <div class="container-fluid">
-            <img src="https://via.placeholder.com/50" alt="Logo" class="d-inline-block align-text-top rounded-circle">
-            <a class="navbar-brand ms-2" href="#">Haaज़री</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Calculator</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link btn btn-success text-white" href="#">Install</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+			<div id="courseCards" class="row g-4"></div>
+		</div>
 
-    <div class="hero-section">
-        <div class="container my-5 p-4 bg-light rounded-3 fooo">
-            <div class="row align-items-center">
-                <div class="col-md-6 hero-text">
-                    <h1 class="fw-bold display-4">Master Your Attendance with Ease.</h1>
-                    <p class="text" style="color: white;">Your ultimate tool for managing attendance and staying on top of your academic goals.</p>
-                    <p class="lead" style="color: white;">
-                        <i class="fas fa-chart-line me-2" ></i>Track your attendance in real-time.<br>
-                        <i class="fas fa-lightbulb me-2"></i>Gain insights to optimize your class schedule.<br>
-                        <i class="fas fa-smile me-2"></i>Achieve academic success with confidence.
-                    </p>
-                </div>
-                <div class="col-md-6 text-center" >
-                    <!-- Add your image here 
-                    <img src="https://st2.depositphotos.com/5425740/42772/v/450/depositphotos_427721736-stock-illustration-group-friends-university-fellow-students.jpg" alt="Fun student illustration" class="img-fluid rounded shadow-lg" style="max-height: 300px; background-blend-mode: color-burn;">  -->
-                    <a href="#courseCards" class="btn bg-dark text-white btn-lg mt-3" style="width: 30%; height: 50%;" >Get Started</a>
-                </div>
-            </div>
-        </div>
-    </div>
+		<section class="info-section">
+			<div class="container">
+				<div class="row align-items-center">
+					<div class="col-md-7">
+						<h6 class="text-primary fw-bold">Stay on Track</h6>
+						<h2 class="fw-bold">Understand Your Bunk Threshold</h2>
+						<p class="text-muted">
+							Haaज़री helps you find the perfect balance between fun and
+							responsibility. Keep your attendance above the required percentage
+							and avoid last-minute surprises.
+						</p>
+						<div class="mt-4">
+							<div class="d-flex align-items-start mb-3">
+								<span class="feature-icon me-3"
+									><i class="fas fa-chart-line"></i
+								></span>
+								<div>
+									<h5 class="fw-bold">Real-Time Calculations</h5>
+									<p class="text-muted">
+										Get instant results with accurate data processing.
+									</p>
+								</div>
+							</div>
+							<div class="d-flex align-items-start mb-3">
+								<span class="feature-icon me-3"
+									><i class="fas fa-lightbulb"></i
+								></span>
+								<div>
+									<h5 class="fw-bold">Helpful Insights</h5>
+									<p class="text-muted">
+										Receive actionable tips to manage your attendance
+										effectively.
+									</p>
+								</div>
+							</div>
+							<div class="d-flex align-items-start">
+								<span class="feature-icon me-3"
+									><i class="fas fa-calculator"></i
+								></span>
+								<div>
+									<h5 class="fw-bold">Smart Planning</h5>
+									<p class="text-muted">
+										Plan your semester with confidence using our easy-to-use
+										tools.
+									</p>
+								</div>
+							</div>
+						</div>
+					</div>
 
-    <div class="container py-5">
-        <h2 class="text-center mb-4">Subject Dashboard</h2>
-        
-        <div class="d-flex justify-content-center action-buttons mb-4">
-            <button class="btn  addcrse" onclick="toggleForm('addCourseForm')">Add Course</button>
-            <button class="btn btn-secondary ms-3 editatt" onclick="toggleForm('editAttendanceForm')">Edit Attendance</button>
-        </div>
+					<div class="col-md-5">
+						<div class="testimonial">
+							<p class="fw-bold">
+								"Thanks to Haaज़री, I know exactly how many classes I can skip
+								without worrying about my grades!"
+							</p>
+							<div class="d-flex align-items-center">
+								<img src="https://via.placeholder.com/40" alt="User Image" />
+								<div>
+									<h6 class="mb-0 fw-bold">Jamie Lee</h6>
+									<small class="text-muted">@studentlife</small>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
 
-        <div id="addCourseForm" class="form-container card p-4">
-            <h5 class="mb-3">Add New Course</h5>
-            <form onsubmit="addCourse(event)">
-                <div class="row g-3">
-                    <div class="col-md-6">
-                        <input type="text" class="form-control" id="teacherName" placeholder="Teacher Name" required>
-                    </div>
-                    <div class="col-md-6">
-                        <input type="date" class="form-control" id="courseStartDate" required>
-                    </div>
-                    <div class="col-md-6">
-                        <input type="text" class="form-control" id="courseName" placeholder="Course Name" required>
-                    </div>
-                    <div class="col-md-6">
-                        <input type="text" class="form-control" id="courseCode" placeholder="Course Code" required>
-                    </div>
-                    <div class="col-12">
-                        <button type="submit" class="btn btn-success w-100">Add Course</button>
-                    </div>
-                </div>
-            </form>
-        </div>
+		<footer class="footer">
+			<div class="container">
+				<div class="row">
+					<div class="col-12">
+						<a href="#">About Haaज़री</a>
+						<a href="#">Attendance Calculator</a>
+						<a href="#">Meet the Team</a>
+						<a href="#">Future Features</a>
+						<a href="#">Contact Us</a>
+					</div>
+				</div>
+				<div class="row mt-3">
+					<div class="col-12 social-icons">
+						<a href="#"><i class="fab fa-twitter"></i></a>
+						<a href="#"><i class="fab fa-facebook"></i></a>
+						<a href="#"><i class="fab fa-instagram"></i></a>
+						<a href="#"><i class="fab fa-github"></i></a>
+					</div>
+				</div>
+				<div class="row mt-3">
+					<div class="col-12 footer-text">
+						© 2025 Haaज़री. Helping you master the art of bunking responsibly!
+					</div>
+				</div>
+				<div class="row mt-2">
+					<div class="col-12 made-in">
+						<!-- Made in India -->
+					</div>
+				</div>
+			</div>
+		</footer>
 
-        <div id="editAttendanceForm" class="form-container card p-4">
-            <h5 class="mb-3">Update Attendance</h5>
-            <form onsubmit="editAttendance(event)">
-                <div class="row g-3">
-                    <div class="col-md-6">
-                        <input type="text" class="form-control" id="subject" placeholder="Subject" required>
-                    </div>
-                    <div class="col-md-6">
-                        <input type="number" class="form-control" id="deliveredLectures" placeholder="Delivered Lectures" required>
-                    </div>
-                    <div class="col-md-6">
-                        <input type="number" class="form-control" id="attendedLectures" placeholder="Attended Lectures" required>
-                    </div>
-                    <div class="col-md-6">
-                        <input type="number" class="form-control" id="approvedDL" placeholder="Approved DL">
-                    </div>
-                    <div class="col-12">
-                        <input type="number" class="form-control" id="approvedML" placeholder="Approved ML">
-                    </div>
-                    <div class="col-12">
-                        <button type="submit" class="btn btn-warning w-100">Update Attendance</button>
-                    </div>
-                </div>
-            </form>
-        </div>
-
-        <div id="courseCards" class="row g-4">
-        </div>
-    </div>
-
-    <section class="info-section">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-md-7">
-                    <h6 class="text-primary fw-bold">Stay on Track</h6>
-                    <h2 class="fw-bold">Understand Your Bunk Threshold</h2>
-                    <p class="text-muted">
-                        Haaज़री helps you find the perfect balance between fun and responsibility. 
-                        Keep your attendance above the required percentage and avoid last-minute surprises.
-                    </p>
-                    <div class="mt-4">
-                        <div class="d-flex align-items-start mb-3">
-                            <span class="feature-icon me-3"><i class="fas fa-chart-line"></i></span>
-                            <div>
-                                <h5 class="fw-bold">Real-Time Calculations</h5>
-                                <p class="text-muted">Get instant results with accurate data processing.</p>
-                            </div>
-                        </div>
-                        <div class="d-flex align-items-start mb-3">
-                            <span class="feature-icon me-3"><i class="fas fa-lightbulb"></i></span>
-                            <div>
-                                <h5 class="fw-bold">Helpful Insights</h5>
-                                <p class="text-muted">Receive actionable tips to manage your attendance effectively.</p>
-                            </div>
-                        </div>
-                        <div class="d-flex align-items-start">
-                            <span class="feature-icon me-3"><i class="fas fa-calculator"></i></span>
-                            <div>
-                                <h5 class="fw-bold">Smart Planning</h5>
-                                <p class="text-muted">Plan your semester with confidence using our easy-to-use tools.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="col-md-5">
-                    <div class="testimonial">
-                        <p class="fw-bold">"Thanks to Haaज़री, I know exactly how many classes I can skip without worrying about my grades!"</p>
-                        <div class="d-flex align-items-center">
-                            <img src="https://via.placeholder.com/40" alt="User Image">
-                            <div>
-                                <h6 class="mb-0 fw-bold">Jamie Lee</h6>
-                                <small class="text-muted">@studentlife</small>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <footer class="footer">
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <a href="#">About Haaज़री</a>
-                    <a href="#">Attendance Calculator</a>
-                    <a href="#">Meet the Team</a>
-                    <a href="#">Future Features</a>
-                    <a href="#">Contact Us</a>
-                </div>
-            </div>
-            <div class="row mt-3">
-                <div class="col-12 social-icons">
-                    <a href="#"><i class="fab fa-twitter"></i></a>
-                    <a href="#"><i class="fab fa-facebook"></i></a>
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                    <a href="#"><i class="fab fa-github"></i></a>
-                </div>
-            </div>
-            <div class="row mt-3">
-                <div class="col-12 footer-text">
-                    © 2025 Haaज़री. Helping you master the art of bunking responsibly!
-                </div>
-            </div>
-            <div class="row mt-2">
-                <div class="col-12 made-in">
-                    <!-- Made in India -->
-                </div>
-            </div>
-        </div>
-    </footer>
-
-    <script>
-        // Function to get query parameters from the URL
-function getQueryParams() {
+		<script>
+			// Function to get query parameters from the URL
+			function getQueryParams() {
     const params = {};
-    window.location.search.substring(1).split('&').forEach(param => {
-        const [key, value] = param.split('=');
-        params[decodeURIComponent(key)] = decodeURIComponent(value);
-    });
+    window.location.search
+        .substring(1)
+        .split('&')
+        .forEach((param) => {
+            const [key, value] = param.split('=');
+            params[decodeURIComponent(key)] = decodeURIComponent(value);
+        });
     return params;
 }
 
-// Retrieve the username from the URL
-const queryParams = getQueryParams();
-const username = queryParams.username;
+			// Retrieve the username from the URL
+			const queryParams = getQueryParams();
+			const username = queryParams.username;
 
-// Load attendance data when the page loads
-window.onload = () => {
-    loadAttendanceFromBackend();
-};
+			// Load attendance data when the page loads
+			window.onload = () => {
+				loadAttendanceFromBackend();
+			};
 
-        let courses = [];
-        
-        function toggleForm(formId) {
-            if (courses.length === 0 && formId === "editAttendanceForm") {
-                const nocrse = document.getElementById("courseCards");
-                nocrse.innerHTML = '<p class="no-courses-message">No courses available! Add a course first.</p>';
-                return;
-            }
-            document.getElementById("addCourseForm").style.display = "none";
-            document.getElementById("editAttendanceForm").style.display = "none";
-            document.getElementById(formId).style.display = "block";
-        }
+			let courses = [];
 
-        function getAttendanceClass(percentage) {
-            if (percentage >= 75) return 'good-attendance';
-            if (percentage >= 65) return 'warning-attendance';
-            return 'poor-attendance';
-        }
+			function toggleForm(formId) {
+				if (courses.length === 0 && formId === 'editAttendanceForm') {
+					const nocrse = document.getElementById('courseCards');
+					nocrse.innerHTML =
+						'<p class="no-courses-message">No courses available! Add a course first.</p>';
+					return;
+				}
+				document.getElementById('addCourseForm').style.display = 'none';
+				document.getElementById('editAttendanceForm').style.display = 'none';
+				document.getElementById(formId).style.display = 'block';
+			}
 
-        function getStatusClass(percentage) {
-            if (percentage >= 75) return 'status-good';
-            if (percentage >= 65) return 'status-warning';
-            return 'status-poor';
-        }
+			function getAttendanceClass(percentage) {
+				if (percentage >= 75) return 'good-attendance';
+				if (percentage >= 65) return 'warning-attendance';
+				return 'poor-attendance';
+			}
 
-        function getAttendanceStatus(percentage, delivered, attended, dl, ml) {
-            const totalAttended = attended + dl + ml;
-            if (delivered === 0) {
-                return `No classes have been delivered yet.`;
-            }
-            if (percentage === 75) {
-                return `Your attendance is exactly 75%`;
-            } else if (percentage > 75) {
-                let bunkableClasses = 0;
-                while ((totalAttended / (delivered + bunkableClasses)) > 0.75) {
-                    bunkableClasses++;
-                }
-                bunkableClasses--; // Adjust to the last valid number of bunkable classes
-                if (bunkableClasses > 0) {
-                    return `Great job! Your attendance is above 75%. You can bunk ${bunkableClasses} classes.`;
-                } else {
-                    return `Your attendance is above 75%, but you can't bunk any more classes.`;
-                }
-            } else if (percentage >= 65) {
-                const requiredClasses = Math.ceil((0.75 * delivered - totalAttended) / 0.25);
-                return `Warning: You need to attend ${requiredClasses} more classes to reach 75%.`;
-            } else {
-                const requiredClasses = Math.ceil((0.75 * delivered - totalAttended) / 0.25);
-                return `Oh no! Your attendance is below 75%. You need to attend ${requiredClasses} more classes to reach the target.`;
-            }
-        }
-        // Function to save attendance data to the backend
-// Function to save attendance data to the backend
-async function saveAttendanceToBackend() {
-    const response = await fetch('http://localhost:3001/saveAttendance', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ username, courses }),
-    });
+			function getStatusClass(percentage) {
+				if (percentage >= 75) return 'status-good';
+				if (percentage >= 65) return 'status-warning';
+				return 'status-poor';
+			}
 
-    const result = await response.json();
-    console.log(result.message);
-}
+			function getAttendanceStatus(percentage, delivered, attended, dl, ml) {
+				const totalAttended = attended + dl + ml;
+				if (delivered === 0) {
+					return `No classes have been delivered yet.`;
+				}
+				if (percentage === 75) {
+					return `Your attendance is exactly 75%`;
+				} else if (percentage > 75) {
+					let bunkableClasses = 0;
+					while (totalAttended / (delivered + bunkableClasses) > 0.75) {
+						bunkableClasses++;
+					}
+					bunkableClasses--; // Adjust to the last valid number of bunkable classes
+					if (bunkableClasses > 0) {
+						return `Great job! Your attendance is above 75%. You can bunk ${bunkableClasses} classes.`;
+					} else {
+						return `Your attendance is above 75%, but you can't bunk any more classes.`;
+					}
+				} else if (percentage >= 65) {
+					const requiredClasses = Math.ceil(
+						(0.75 * delivered - totalAttended) / 0.25
+					);
+					return `Warning: You need to attend ${requiredClasses} more classes to reach 75%.`;
+				} else {
+					const requiredClasses = Math.ceil(
+						(0.75 * delivered - totalAttended) / 0.25
+					);
+					return `Oh no! Your attendance is below 75%. You need to attend ${requiredClasses} more classes to reach the target.`;
+				}
+			}
+			// Function to save attendance data to the backend
+			// Function to save attendance data to the backend
+			async function saveAttendanceToBackend() {
+				const response = await fetch('http://localhost:3001/saveAttendance', {
+					method: 'POST',
+					headers: { 'Content-Type': 'application/json' },
+					body: JSON.stringify({ username, courses }),
+				});
 
-// Function to load attendance data from the backend
-// Function to load attendance data from the backend
-async function loadAttendanceFromBackend() {
-    const response = await fetch(`http://localhost:3001/loadAttendance?username=${username}`);
-    const result = await response.json();
+				const result = await response.json();
+				console.log(result.message);
+			}
 
-    if (result.courses) {
-        courses = result.courses;
-        updateCards();
-    }
-}
-        function calculateRotation(percentage) {
-            const degrees = (percentage / 100) * 360;
-            return degrees;
-        }
+			// Function to load attendance data from the backend
+			// Function to load attendance data from the backend
+			async function loadAttendanceFromBackend() {
+				const response = await fetch(
+					`http://localhost:3001/loadAttendance?username=${username}`
+				);
+				const result = await response.json();
 
-        function addCourse(event) {
-    event.preventDefault();
-    const teacherName = document.getElementById("teacherName").value;
-    const courseStartDate = document.getElementById("courseStartDate").value;
-    const courseName = document.getElementById("courseName").value;
-    const courseCode = document.getElementById("courseCode").value;
+				if (result.courses) {
+					courses = result.courses;
+					updateCards();
+				}
+			}
+			function calculateRotation(percentage) {
+				const degrees = (percentage / 100) * 360;
+				return degrees;
+			}
 
-    const course = {
-        courseName,
-        teacherName,
-        courseStartDate,
-        courseCode,
-        delivered: 0,
-        attended: 0,
-        percentage: "0",
-        dl: 0,
-        ml: 0
-    };
+			function addCourse(event) {
+				event.preventDefault();
+				const teacherName = document.getElementById('teacherName').value;
+				const courseStartDate =
+					document.getElementById('courseStartDate').value;
+				const courseName = document.getElementById('courseName').value;
+				const courseCode = document.getElementById('courseCode').value;
 
-    courses.push(course);
-    updateCards();
-    document.getElementById("addCourseForm").style.display = "none";
-    event.target.reset();
+				const course = {
+					courseName,
+					teacherName,
+					courseStartDate,
+					courseCode,
+					delivered: 0,
+					attended: 0,
+					percentage: '0',
+					dl: 0,
+					ml: 0,
+				};
 
-    // Save the updated courses to the backend
-    saveAttendanceToBackend();
-}
+				courses.push(course);
+				updateCards();
+				document.getElementById('addCourseForm').style.display = 'none';
+				event.target.reset();
 
-function editAttendance(event) {
-    event.preventDefault();
-    
-    if (courses.length === 0) {
-        alert("No courses available! Add a course first.");
-        return;
-    }
+				// Save the updated courses to the backend
+				saveAttendanceToBackend();
+			}
 
-    const subject = document.getElementById('subject').value;
-    const delivered = parseInt(document.getElementById("deliveredLectures").value);
-    const attended = parseInt(document.getElementById("attendedLectures").value);
-    const dl = parseInt(document.getElementById("approvedDL").value) || 0;
-    const ml = parseInt(document.getElementById("approvedML").value) || 0;
-    
-    const course = courses.find(course => course.courseName === subject);
-    
-    if (course) {
-        course.delivered += delivered;
-        course.attended += attended;
-        course.dl += dl;
-        course.ml += ml;
-        course.percentage = (((course.attended + course.dl + course.ml) / course.delivered) * 100).toFixed(2);
+			function editAttendance(event) {
+				event.preventDefault();
 
-        updateCards();
-        document.getElementById("editAttendanceForm").style.display = "none";
-        event.target.reset();
+				if (courses.length === 0) {
+					alert('No courses available! Add a course first.');
+					return;
+				}
 
-        // Save the updated courses to the backend
-        saveAttendanceToBackend();
-    } else {
-        alert("Course not found!");
-    }
-}
-        
-function updateCards() {
-    const container = document.getElementById("courseCards");
-    container.innerHTML = "";
+				const subject = document.getElementById('subject').value;
+				const delivered = parseInt(
+					document.getElementById('deliveredLectures').value
+				);
+				const attended = parseInt(
+					document.getElementById('attendedLectures').value
+				);
+				const dl = parseInt(document.getElementById('approvedDL').value) || 0;
+				const ml = parseInt(document.getElementById('approvedML').value) || 0;
 
-    courses.forEach((course) => {
-        const percentage = parseFloat(course.percentage);
-        const attendanceClass = getAttendanceClass(percentage);
-        const statusClass = getStatusClass(percentage);
-        const statusMessage = getAttendanceStatus(percentage, course.delivered, course.attended, course.dl, course.ml);
-        const rotation = (percentage / 100) * 360; // Calculate rotation in degrees
+				const course = courses.find((course) => course.courseName === subject);
 
-        // Determine the progress color based on attendance percentage
-        let progressColor;
-        if (percentage >= 75) {
-            progressColor = "#28a745"; // Green for good attendance
-        } else if (percentage >= 65) {
-            progressColor = "#ffc107"; // Yellow for warning
-        } else {
-            progressColor = "#dc3545"; // Red for poor attendance
-        }
+				if (course) {
+					course.delivered += delivered;
+					course.attended += attended;
+					course.dl += dl;
+					course.ml += ml;
+					course.percentage = (
+						((course.attended + course.dl + course.ml) / course.delivered) *
+						100
+					).toFixed(2);
 
-        const card = `
+					updateCards();
+					document.getElementById('editAttendanceForm').style.display = 'none';
+					event.target.reset();
+
+					// Save the updated courses to the backend
+					saveAttendanceToBackend();
+				} else {
+					alert('Course not found!');
+				}
+			}
+
+			function updateCards() {
+				const container = document.getElementById('courseCards');
+				container.innerHTML = '';
+
+				courses.forEach((course) => {
+					const percentage = parseFloat(course.percentage);
+					const attendanceClass = getAttendanceClass(percentage);
+					const statusClass = getStatusClass(percentage);
+					const statusMessage = getAttendanceStatus(
+						percentage,
+						course.delivered,
+						course.attended,
+						course.dl,
+						course.ml
+					);
+					const rotation = (percentage / 100) * 360; // Calculate rotation in degrees
+
+					// Determine the progress color based on attendance percentage
+					let progressColor;
+					if (percentage >= 75) {
+						progressColor = '#28a745'; // Green for good attendance
+					} else if (percentage >= 65) {
+						progressColor = '#ffc107'; // Yellow for warning
+					} else {
+						progressColor = '#dc3545'; // Red for poor attendance
+					}
+
+					const card = `
             <div class="col-md-4">
                 <div class="card subject-card h-100">
                     <div class="card-body">
@@ -739,16 +880,15 @@ function updateCards() {
                 </div>
             </div>
         `;
-        container.innerHTML += card;
-    });
-}
+					container.innerHTML += card;
+				});
+			}
 
-
-        // Load attendance data when the page loads
-window.onload = () => {
-    loadAttendanceFromBackend();
-};
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-</body>
+			// Load attendance data when the page loads
+			window.onload = () => {
+				loadAttendanceFromBackend();
+			};
+		</script>
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+	</body>
 </html>

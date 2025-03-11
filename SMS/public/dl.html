@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Haazri Attendance Manager</title>
+		<!-- Bootstrap CSS -->
+		<link
+			href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+			rel="stylesheet"
+		/>
+		<!-- Google Fonts for beautiful text -->
+		<link
+			href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap"
+			rel="stylesheet"
+		/>
+
+		<style>
+			body {
+				font-family: 'Roboto', sans-serif;
+				background-color: #f4f4f4;
+				color: #333;
+				margin: 20px;
+			}
+
+			.navbar {
+				background-color: #008080;
+				width: 80%;
+			}
+
+			.navbar-brand {
+				font-size: 1.8em;
+				font-weight: bold;
+				color: rgb(0, 0, 0) !important;
+			}
+
+			.navbar-toggler-icon {
+				background-color: white;
+			}
+
+			.nav-link {
+				font-size: 1.1em;
+				color: rgb(0, 0, 0) !important;
+			}
+
+			.btn-success {
+				background-color: #008080;
+				border-color: #008080;
+			}
+
+			.container {
+				margin-top: 20px;
+			}
+
+			.event-section {
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+				margin-bottom: 40px;
+			}
+
+			.event-image {
+				max-width: 500px;
+				height: auto;
+				border-radius: 8px;
+			}
+
+			.event-details {
+				max-width: 60%;
+			}
+
+			.event-details h2 {
+				font-size: 2.5em;
+				color: #008080;
+				font-weight: bold;
+			}
+
+			.event-details p {
+				font-size: 1.2em;
+				color: #333;
+			}
+
+			.btn-event {
+				background-color: #008080;
+				color: white;
+				padding: 10px 20px;
+				font-size: 1.2em;
+				border: none;
+				border-radius: 5px;
+			}
+
+			.cards-container {
+				display: flex;
+				flex-wrap: wrap;
+				justify-content: space-evenly;
+				margin-top: 40px;
+			}
+
+			.card {
+				width: 18rem;
+				margin: 20px;
+				border-radius: 10px;
+				box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+				overflow: hidden;
+				background-color: white;
+			}
+
+			.card img {
+				width: 100%;
+				height: 180px;
+				object-fit: cover;
+			}
+
+			.card-body {
+				padding: 20px;
+			}
+
+			.card-title {
+				font-size: 1.5em;
+				color: #008080;
+			}
+
+			.card-time {
+				font-size: 1.1em;
+				color: #666;
+				margin-top: 10px;
+			}
+
+			.card-text {
+				font-size: 1.1em;
+				color: #444;
+			}
+
+			.card-footer {
+				background-color: #f4f4f4;
+				padding: 10px;
+				text-align: center;
+			}
+
+			.add-event-btn {
+				background-color: #008080;
+				color: white;
+				padding: 10px 20px;
+				font-size: 1.2em;
+				border: none;
+				border-radius: 5px;
+				margin-bottom: 20px;
+				display: block;
+				width: 200px;
+				margin-left: auto;
+				margin-right: auto;
+			}
+
+			.add-event-form {
+				display: none;
+				background-color: #ffffff;
+				padding: 30px;
+				border-radius: 8px;
+				box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+				margin-top: 40px;
+			}
+
+			.add-event-form input,
+			.add-event-form textarea {
+				width: 100%;
+				padding: 10px;
+				margin-bottom: 20px;
+				font-size: 1.1em;
+				border: 1px solid #ccc;
+				border-radius: 5px;
+			}
+
+			.add-event-form button {
+				background-color: #008080;
+				color: white;
+				padding: 10px 20px;
+				font-size: 1.2em;
+				border: none;
+				border-radius: 5px;
+			}
+
+			.add-event-form .close-btn {
+				background-color: red;
+				color: white;
+				padding: 10px;
+				font-size: 1.2em;
+				border-radius: 5px;
+				margin-top: 20px;
+			}
+
+			.dl-img {
+				width: 500px;
+				margin-top: 40px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<!-- Navbar -->
+		<nav class="navbar navbar-expand-lg navbar-light bg-light mx-auto nav">
+			<div class="container-fluid">
+				<img
+					src="https://via.placeholder.com/50"
+					alt="Logo"
+					class="d-inline-block align-text-top rounded-circle"
+				/>
+				<a class="navbar-brand ms-2" href="#">Haaज़री</a>
+				<button
+					class="navbar-toggler"
+					type="button"
+					data-bs-toggle="collapse"
+					data-bs-target="#navbarNav"
+				>
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navbarNav">
+					<ul class="navbar-nav ms-auto">
+						<li class="nav-item">
+							<a class="nav-link" href="#">Home</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="#">Calculator</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+
+		<!-- Event Section -->
+		<div class="container event-section">
+			<div class="event-image">
+				<img src="../assets/dl.svg" alt="Event Image" class="dl-img" />
+			</div>
+			<div class="event-details">
+				<h2>Upcoming Class: Don't Miss It!</h2>
+				<p>
+					Get ready for an exciting class on time management! Be sure to attend
+					and gain the skills you need to excel.
+				</p>
+				<button class="btn-event">Mark Your Attendance</button>
+			</div>
+		</div>
+
+		<!-- Add Event Button -->
+		<button class="add-event-btn" onclick="toggleAddEventForm()">
+			Add Event
+		</button>
+
+		<!-- Add Event Form -->
+		<div class="add-event-form" id="addEventForm">
+			<h3>Enter Event Details</h3>
+			<input
+				type="email"
+				placeholder="Organizer Email"
+				id="organizerEmail"
+				required
+			/>
+			<input type="text" placeholder="Event Name" id="eventName" required />
+			<textarea
+				placeholder="Event Description"
+				id="eventDescription"
+				required
+			></textarea>
+			<input type="file" id="eventImage" accept="image/*" />
+			<button type="submit" onclick="submitEvent()">Submit Event</button>
+			<button type="button" class="close-btn" onclick="closeAddEventForm()">
+				Close
+			</button>
+		</div>
+
+		<!-- Preloaded Event Cards -->
+		<div class="cards-container" id="eventsContainer">
+			<div class="card">
+				<img src="./hwh-event.png" alt="Event Image" />
+				<div class="card-body">
+					<h5 class="card-title">Hack With Her</h5>
+					<p class="card-time">9 AM - 4 PM</p>
+					<p class="card-date">15-16 May</p>
+					<p class="card-text">A 2 day Hackathon for women in Tech.</p>
+					<div class="card-footer">
+						Organizer: Iee.cuiet@chitkara.in <br />
+						Location: Picaso Ground floor
+						<button class="btn btn-success" data-event="Hack With Her">Select this Event</button>
+					</div>
+				</div>
+			</div>
+			
+			<div class="card">
+				<img src="../assets/Somnium.png" alt="Event Image" />
+				<div class="card-body">
+					<h5 class="card-title">Somnium</h5>
+					<p class="card-time">10 AM - 3 PM</p>
+					<p class="card-date">12May</p>
+					<p class="card-text">A workshop to improve your study habits and ace your exams.</p>
+					<div class="card-footer">
+						Organizer: chairperson@ieee.in <br />
+						Location: Edison Block
+						<button class="btn btn-success" data-event="Somnium">Select this Event</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Bootstrap JS & Dependencies -->
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+		<script>
+			function toggleAddEventForm() {
+				const form = document.getElementById('addEventForm');
+				form.style.display = form.style.display === 'block' ? 'none' : 'block';
+			}
+
+			function closeAddEventForm() {
+				document.getElementById('addEventForm').style.display = 'none';
+			}
+
+			function submitEvent() {
+				const eventName = document.getElementById('eventName').value;
+				const eventDescription =
+					document.getElementById('eventDescription').value;
+				const organizerEmail = document.getElementById('organizerEmail').value;
+				const eventImage = document.getElementById('eventImage').files[0];
+
+				// Create a new event card element
+				const cardContainer = document.createElement('div');
+				cardContainer.classList.add('card');
+
+				const eventImageElement = document.createElement('img');
+				eventImageElement.src = URL.createObjectURL(eventImage);
+				cardContainer.appendChild(eventImageElement);
+
+				const cardBody = document.createElement('div');
+				cardBody.classList.add('card-body');
+				cardContainer.appendChild(cardBody);
+
+				const cardTitle = document.createElement('h5');
+				cardTitle.classList.add('card-title');
+				cardTitle.textContent = eventName;
+				cardBody.appendChild(cardTitle);
+
+				const cardTime = document.createElement('p');
+				cardTime.classList.add('card-time');
+				cardTime.textContent = '9 AM - 4 PM'; // Example time
+				cardBody.appendChild(cardTime);
+
+				const cardDescription = document.createElement('p');
+				cardDescription.classList.add('card-text');
+				cardDescription.textContent = eventDescription;
+				cardBody.appendChild(cardDescription);
+
+				const cardFooter = document.createElement('div');
+				cardFooter.classList.add('card-footer');
+				cardFooter.innerHTML = `Organizer: ${organizerEmail} <br> Location: Online`;
+				cardContainer.appendChild(cardFooter);
+
+				const addButton = document.createElement('button');
+				addButton.classList.add('btn', 'btn-success');
+				addButton.textContent = 'Select this Event';
+				cardBody.appendChild(addButton);
+
+				document.getElementById('eventsContainer').appendChild(cardContainer);
+
+
+
+    // Function to get query parameters from the URL
+    function getQueryParams() {
+        const params = {};
+        window.location.search
+            .substring(1)
+            .split('&')
+            .forEach((param) => {
+                const [key, value] = param.split('=');
+                params[decodeURIComponent(key)] = decodeURIComponent(value);
+            });
+        return params;
+    }
+
+    // Retrieve the username from the URL
+    const queryParams = getQueryParams();
+    const username = queryParams.username;
+
+    // Function to handle event selection
+    async function selectEvent(eventName) {
+        // Disable the button for the selected event
+        const eventButton = document.querySelector(`button[data-event="${eventName}"]`);
+        eventButton.disabled = true;
+        eventButton.textContent = "Event Selected";
+
+        // Send the event selection to the backend
+        const response = await fetch('http://localhost:3001/selectEvent', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ username, eventName }),
+        });
+
+        const result = await response.json();
+        if (response.ok) {
+            alert(result.message);
+        } else {
+            alert(result.message);
+        }
+    }
+
+    // Add event listeners to all "Select this Event" buttons
+    document.addEventListener("DOMContentLoaded", () => {
+        const eventButtons = document.querySelectorAll('.btn-success');
+        eventButtons.forEach((button) => {
+            button.addEventListener('click', () => {
+                const eventName = button.getAttribute('data-event');
+                selectEvent(eventName);
+            });
+        });
+    });
+
+    
+
+    // You can now use the username as needed
+    console.log("Username:", username);
+
+    // Example: Display the username in the page
+    document.addEventListener("DOMContentLoaded", () => {
+        const usernameDisplay = document.createElement('div');
+        usernameDisplay.textContent = `Welcome, ${username}`;
+        usernameDisplay.style.margin = '10px';
+        usernameDisplay.style.fontWeight = 'bold';
+        document.body.insertBefore(usernameDisplay, document.body.firstChild);
+    });
+				// Close the form after submission
+				closeAddEventForm();
+			}
+		</script>
+	</body>
+</html>
