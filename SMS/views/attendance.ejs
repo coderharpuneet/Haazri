@@ -1,0 +1,531 @@
+<%- include('partials/header', { title: 'Haaज़री - Attendance Dashboard' }) %>
+<link rel="stylesheet" href="/attendance.css">
+<nav class="navbar navbar-expand-lg navbar-light bg-light mx-auto nav">
+    <div class="container-fluid">
+        <a class="navbar-brand ms-2" href="#">Haaज़री</a>
+        <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNav"
+        >
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/landing">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Calculator</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link btn btn-success text-white" href="#">Install</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="hero-section">
+    <div class="container my-5 p-4 bg-light rounded-3 fooo">
+        <div class="row align-items-center">
+            <div class="col-md-6 hero-text">
+                
+                <h1 class="fw-bold display-4">Master Your Attendance with Ease.</h1>
+                <p class="text" style="color: white">
+                    Your ultimate tool for managing attendance and staying on top of
+                    your academic goals.
+                </p>
+                <p class="lead" style="color: white">
+                    <i class="fas fa-chart-line me-2"></i>Track your attendance in
+                    real-time.<br />
+                    <i class="fas fa-lightbulb me-2"></i>Gain insights to optimize
+                    your class schedule.<br />
+                    <i class="fas fa-smile me-2"></i>Achieve academic success with
+                    confidence.
+                </p>
+            </div>
+            
+            <div class="col-md-6 text-center">
+                <a
+                    href="#courseCards"
+                    class="btn bg-dark text-white btn-lg mt-3"
+                    style="width: 30%; height: 50%"
+                    >Get Started</a
+                >
+            </div>
+        </div>
+    </div>
+</div>
+<div class="text-center mt-4">
+    <h2 class="fw-bold" style="color: 		#FF8F00;">Welcome, <%= username %> 👋</h2>
+  </div>
+<div class="container py-5">
+    <h2 class="text-center mb-4">Subject Dashboard</h2>
+
+    <div class="d-flex justify-content-center action-buttons mb-4">
+        <button class="btn addcrse" onclick="toggleForm('addCourseForm')">
+            Add Course
+        </button>
+        <button
+            class="btn btn-secondary ms-3 editatt"
+            onclick="toggleForm('editAttendanceForm')"
+        >
+            Edit Attendance
+        </button>
+        <button
+            class="btn btn-secondary ms-3 editatt"
+            onclick="window.location.href='dl.html?username=' + encodeURIComponent('<%= username %>');"
+        >
+            Upcoming Events
+        </button>
+    </div>
+
+    <div id="addCourseForm" class="form-container card p-4">
+        <h5 class="mb-3">Add New Course</h5>
+        <form onsubmit="addCourse(event)">
+            <div class="row g-3">
+                <div class="col-md-6">
+                    <input
+                        type="text"
+                        class="form-control"
+                        id="teacherName"
+                        placeholder="Teacher Name"
+                        required
+                    />
+                </div>
+                <div class="col-md-6">
+                    <input
+                        type="date"
+                        class="form-control"
+                        id="courseStartDate"
+                        required
+                    />
+                </div>
+                <div class="col-md-6">
+                    <input
+                        type="text"
+                        class="form-control"
+                        id="courseName"
+                        placeholder="Course Name"
+                        required
+                    />
+                </div>
+                <div class="col-md-6">
+                    <input
+                        type="text"
+                        class="form-control"
+                        id="courseCode"
+                        placeholder="Course Code"
+                        required
+                    />
+                </div>
+                <div class="col-12">
+                    <button type="submit" class="btn btn-success w-100">
+                        Add Course
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <div id="editAttendanceForm" class="form-container card p-4">
+        <h5 class="mb-3">Update Attendance</h5>
+        <form onsubmit="editAttendance(event)">
+            <div class="row g-3">
+                <div class="col-md-6">
+                    <input
+                        type="text"
+                        class="form-control"
+                        id="subject"
+                        placeholder="Subject"
+                        required
+                    />
+                </div>
+                <div class="col-md-6">
+                    <input
+                        type="number"
+                        class="form-control"
+                        id="deliveredLectures"
+                        placeholder="Delivered Lectures"
+                        required
+                    />
+                </div>
+                <div class="col-md-6">
+                    <input
+                        type="number"
+                        class="form-control"
+                        id="attendedLectures"
+                        placeholder="Attended Lectures"
+                        required
+                    />
+                </div>
+                <div class="col-md-6">
+                    <input
+                        type="number"
+                        class="form-control"
+                        id="approvedDL"
+                        placeholder="Approved DL"
+                    />
+                </div>
+                <div class="col-12">
+                    <input
+                        type="number"
+                        class="form-control"
+                        id="approvedML"
+                        placeholder="Approved ML"
+                    />
+                </div>
+                <div class="col-12">
+                    <button type="submit" class="btn btn-warning w-100">
+                        Update Attendance
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <div id="courseCards" class="row g-4"></div>
+</div>
+
+<section class="info-section">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-md-7">
+                <h6 class="text-primary fw-bold">Stay on Track</h6>
+                <h2 class="fw-bold">Understand Your Bunk Threshold</h2>
+                <p class="text-muted">
+                    Haaज़री helps you find the perfect balance between fun and
+                    responsibility. Keep your attendance above the required percentage
+                    and avoid last-minute surprises.
+                </p>
+                <div class="mt-4">
+                    <div class="d-flex align-items-start mb-3">
+                        <span class="feature-icon me-3"
+                            ><i class="fas fa-chart-line"></i
+                        ></span>
+                        <div>
+                            <h5 class="fw-bold">Real-Time Calculations</h5>
+                            <p class="text-muted">
+                                Get instant results with accurate data processing.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-start mb-3">
+                        <span class="feature-icon me-3"
+                            ><i class="fas fa-lightbulb"></i
+                        ></span>
+                        <div>
+                            <h5 class="fw-bold">Helpful Insights</h5>
+                            <p class="text-muted">
+                                Receive actionable tips to manage your attendance
+                                effectively.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-start">
+                        <span class="feature-icon me-3"
+                            ><i class="fas fa-calculator"></i
+                        ></span>
+                        <div>
+                            <h5 class="fw-bold">Smart Planning</h5>
+                            <p class="text-muted">
+                                Plan your semester with confidence using our easy-to-use
+                                tools.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-5">
+                <div class="testimonial">
+                    <p class="fw-bold">
+                        "Thanks to Haaज़री, I know exactly how many classes I can skip
+                        without worrying about my grades!"
+                    </p>
+                    <div class="d-flex align-items-center">
+                        <img src="https://via.placeholder.com/40" alt="User Image" />
+                        <div>
+                            <h6 class="mb-0 fw-bold">Jamie Lee</h6>
+                            <small class="text-muted">@studentlife</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer class="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <a href="#">About Haaज़री</a>
+                <a href="#">Attendance Calculator</a>
+                <a href="#">Meet the Team</a>
+                <a href="#">Future Features</a>
+                <a href="#">Contact Us</a>
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-12 social-icons">
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-github"></i></a>
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-12 footer-text">
+                © 2025 Haaज़री. Helping you master the art of bunking responsibly!
+            </div>
+        </div>
+        <div class="row mt-2">
+            <div class="col-12 made-in">
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script>
+    const username = "<%= username %>";
+
+    window.onload = () => {
+        loadAttendanceFromBackend();
+    };
+
+    let courses = [];
+
+    function toggleForm(formId) {
+        if (courses.length === 0 && formId === 'editAttendanceForm') {
+            const nocrse = document.getElementById('courseCards');
+            nocrse.innerHTML =
+                '<p class="no-courses-message">No courses available! Add a course first.</p>';
+            return;
+        }
+        document.getElementById('addCourseForm').style.display = 'none';
+        document.getElementById('editAttendanceForm').style.display = 'none';
+        document.getElementById(formId).style.display = 'block';
+    }
+
+    function getAttendanceClass(percentage) {
+        if (percentage >= 75) return 'good-attendance';
+        if (percentage >= 65) return 'warning-attendance';
+        return 'poor-attendance';
+    }
+
+    function getStatusClass(percentage) {
+        if (percentage >= 75) return 'status-good';
+        if (percentage >= 65) return 'status-warning';
+        return 'status-poor';
+    }
+
+    function getAttendanceStatus(percentage, delivered, attended, dl, ml) {
+        const totalAttended = attended + dl + ml;
+        if (delivered === 0) {
+            return `No classes have been delivered yet.`;
+        }
+        if (percentage === 75) {
+            return `Your attendance is exactly 75%`;
+        } else if (percentage > 75) {
+            let bunkableClasses = 0;
+            while (totalAttended / (delivered + bunkableClasses) > 0.75) {
+                bunkableClasses++;
+            }
+            bunkableClasses--;
+            if (bunkableClasses > 0) {
+                return `Great job! Your attendance is above 75%. You can bunk ${bunkableClasses} classes.`;
+            } else {
+                return `Your attendance is above 75%, but you can't bunk any more classes.`;
+            }
+        } else if (percentage >= 65) {
+            const requiredClasses = Math.ceil(
+                (0.75 * delivered - totalAttended) / 0.25
+            );
+            return `Warning: You need to attend ${requiredClasses} more classes to reach 75%.`;
+        } else {
+            const requiredClasses = Math.ceil(
+                (0.75 * delivered - totalAttended) / 0.25
+            );
+            return `Oh no! Your attendance is below 75%. You need to attend ${requiredClasses} more classes to reach the target.`;
+        }
+    }
+
+    async function saveAttendanceToBackend() {
+        const response = await fetch('/saveAttendance', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ username, courses }),
+        });
+
+        const result = await response.json();
+        console.log(result.message);
+    }
+
+    async function loadAttendanceFromBackend() {
+        const response = await fetch(
+            `/loadAttendance?username=${username}`
+        );
+        const result = await response.json();
+
+        if (result.courses) {
+            courses = result.courses;
+            updateCards();
+        }
+    }
+    
+    function calculateRotation(percentage) {
+        const degrees = (percentage / 100) * 360;
+        return degrees;
+    }
+
+    function addCourse(event) {
+        event.preventDefault();
+        const teacherName = document.getElementById('teacherName').value;
+        const courseStartDate =
+            document.getElementById('courseStartDate').value;
+        const courseName = document.getElementById('courseName').value;
+        const courseCode = document.getElementById('courseCode').value;
+
+        const course = {
+            courseName,
+            teacherName,
+            courseStartDate,
+            courseCode,
+            delivered: 0,
+            attended: 0,
+            percentage: '0',
+            dl: 0,
+            ml: 0,
+        };
+
+        courses.push(course);
+        updateCards();
+        document.getElementById('addCourseForm').style.display = 'none';
+        event.target.reset();
+
+        saveAttendanceToBackend();
+    }
+
+    function editAttendance(event) {
+        event.preventDefault();
+
+        if (courses.length === 0) {
+            alert('No courses available! Add a course first.');
+            return;
+        }
+
+        const subject = document.getElementById('subject').value;
+        const delivered = parseInt(
+            document.getElementById('deliveredLectures').value
+        );
+        const attended = parseInt(
+            document.getElementById('attendedLectures').value
+        );
+        const dl = parseInt(document.getElementById('approvedDL').value) || 0;
+        const ml = parseInt(document.getElementById('approvedML').value) || 0;
+
+        const course = courses.find((course) => course.courseName === subject);
+
+        if (course) {
+            course.delivered += delivered;
+            course.attended += attended;
+            course.dl += dl;
+            course.ml += ml;
+            course.percentage = (
+                ((course.attended + course.dl + course.ml) / course.delivered) *
+                100
+            ).toFixed(2);
+
+            updateCards();
+            document.getElementById('editAttendanceForm').style.display = 'none';
+            event.target.reset();
+
+            saveAttendanceToBackend();
+        } else {
+            alert('Course not found!');
+        }
+    }
+
+    function updateCards() {
+        const container = document.getElementById('courseCards');
+        container.innerHTML = '';
+
+        courses.forEach((course) => {
+            const percentage = parseFloat(course.percentage);
+            const attendanceClass = getAttendanceClass(percentage);
+            const statusClass = getStatusClass(percentage);
+            const statusMessage = getAttendanceStatus(
+                percentage,
+                course.delivered,
+                course.attended,
+                course.dl,
+                course.ml
+            );
+            const rotation = (percentage / 100) * 360;
+
+            let progressColor;
+            if (percentage >= 75) {
+                progressColor = '#28a745';
+            } else if (percentage >= 65) {
+                progressColor = '#ffc107';
+            } else {
+                progressColor = '#dc3545';
+            }
+
+            const card = `
+            <div class="col-md-4">
+                <div class="card subject-card h-100">
+                    <div class="card-body">
+                        <div class="percentage-circle ${attendanceClass} mb-3" 
+                             style="--rotation: ${rotation}deg; --progress-color: ${progressColor}">
+                            <div class="circle-bg"></div>
+                            <div class="circle-progress"></div>
+                            <span class="percentage-text">${course.percentage}%</span>
+                        </div>
+                        <h5 class="card-title text-center mb-3">${course.courseName} (${course.courseCode})</h5>
+                        <div class="row g-2">
+                            <div class="col-6">
+                                <div class="stats-item">
+                                    <div class="stats-label">Delivered</div>
+                                    <div class="stats-value">${course.delivered}</div>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="stats-item">
+                                    <div class="stats-label">Attended</div>
+                                    <div class="stats-value">${course.attended}</div>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="stats-item">
+                                    <div class="stats-label">DL</div>
+                                    <div class="stats-value">${course.dl}</div>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="stats-item">
+                                    <div class="stats-label">ML</div>
+                                    <div class="stats-value">${course.ml}</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="attendance-status ${statusClass}">
+                            ${statusMessage}
+                        </div>
+                        <div class="mt-3">
+                            <p class="mb-1"><i class="fas fa-user me-2"></i>${course.teacherName}</p>
+                            <p class="mb-0"><i class="fas fa-calendar me-2"></i>${course.courseStartDate}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+            container.innerHTML += card;
+        });
+    }
+</script>
+
+<%- include('partials/footer') %>

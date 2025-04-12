@@ -1,0 +1,36 @@
+<%- include('partials/header', { title: '404 - Page Not Found' }) %>
+
+<link rel="stylesheet" href="/landing.css">
+<script src="https://unpkg.com/lottie-web@5.7.4/build/player/lottie.min.js"></script>
+
+
+<section class="hero-section d-flex align-items-center justify-content-center" style="height: 100vh; background-color: #f8f9fa;">
+  <div class="container text-center p-4 shadow def" style="max-width: 600px; background: white; border-radius: 15px;">
+    <div id="lottie-animation" style="width: 250px; height: 250px; margin: 0 auto;"></div>
+    <h1 class="fw-bold text-danger">Oops! 404</h1>
+    <p class="text-muted mb-4">Looks like you accidentally skipped more than just your attendance 😅</p>
+<p>This page bunked out... but you can still head back to <strong>Haaज़री</strong> 👇</p>
+
+    
+    <a href="/" class="btn btn-success mt-4" style="background-color: #008080;">Back to Home</a>
+    <a href="/login" class="btn btn-outline-dark mt-4">Login & Track Attendance</a>
+
+    <div class="mt-5">
+      <i class="fas fa-user-graduate fa-2x text-secondary"></i>
+      <p class="mt-2"><em>"Attendance nahi toh kuch nahi!"</em></p>
+    </div>
+  </div>
+</section>
+
+
+<script>
+  lottie.loadAnimation({
+    container: document.getElementById("lottie-animation"),
+    renderer: "svg",
+    loop: true,
+    autoplay: true,
+    path: "/lottie/404logo.json" // JSON animation file
+  });
+</script>
+<%- include('partials/footer') %>
+

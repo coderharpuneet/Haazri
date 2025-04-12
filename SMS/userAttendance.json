@@ -5,10 +5,10 @@
       "teacherName": "Vijaita Kashyap",
       "courseStartDate": "2025-03-07",
       "courseCode": "231099",
-      "delivered": 99,
-      "attended": 87,
-      "percentage": "87.88",
-      "dl": 0,
+      "delivered": 125,
+      "attended": 99,
+      "percentage": "80.00",
+      "dl": 1,
       "ml": 0
     },
     {
@@ -132,6 +132,32 @@
       "percentage": "60.87",
       "dl": 0,
       "ml": 0
+    }
+  ],
+  "tttt": [
+    {
+      "courseName": "be",
+      "teacherName": "Vijaita Kashyap",
+      "courseStartDate": "2025-03-12",
+      "courseCode": "231099",
+      "delivered": 47,
+      "attended": 40,
+      "percentage": "87.23",
+      "dl": 1,
+      "ml": 0
+    }
+  ],
+  "prannay": [
+    {
+      "courseName": "Java",
+      "teacherName": "Vijaita Kashyap",
+      "courseStartDate": "2025-03-12",
+      "courseCode": "231099",
+      "delivered": 45,
+      "attended": 30,
+      "percentage": "88.89",
+      "dl": 5,
+      "ml": 5
     }
   ]
 }

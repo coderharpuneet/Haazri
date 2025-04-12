@@ -1,0 +1,316 @@
+    body {
+        background-color: #ffffff;
+        font-family: 'Segoe UI', system-ui, sans-serif;
+    }
+
+    .nav {
+        width: 70%;
+    }
+    .hero-section {
+        animation-name: hero;
+        animation-duration: 2s;
+        animation-iteration-count: 1;
+    }
+    @keyframes hero {
+        0% {
+            opacity: 0;
+            transform: translateY(-100px);
+        }
+        100% {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    .hero-text {
+        animation-name: heroText;
+        animation-duration: 2s;
+        animation-iteration-count: 1;
+    }
+    @keyframes heroText {
+        0% {
+            opacity: 0;
+            transform: translateY(100px);
+        }
+        100% {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @keyframes fadeInUp {
+        0% {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        100% {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    .hero-text h1 {
+        animation: fadeInUp 1s ease-in-out;
+    }
+
+    .card {
+        background: #ffffff;
+        border: none;
+        border-radius: 15px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        transition: transform 0.2s ease-in-out;
+        margin-bottom: 20px;
+    }
+
+    .card:hover {
+        transform: translateY(-5px);
+    }
+
+    .subject-card {
+        background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+    }
+
+    .percentage-circle {
+        width: 120px;
+        height: 120px;
+        position: relative;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .circle-bg {
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        position: absolute;
+        background: #f0f0f0;
+    }
+
+    .circle-progress {
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        position: absolute;
+        background: conic-gradient(
+            var(--progress-color) 0deg,
+            var(--progress-color) var(--rotation),
+            transparent var(--rotation),
+            transparent 360deg
+        );
+        mask: radial-gradient(
+            circle,
+            transparent 60%,
+            black 60%,
+            black 70%,
+            transparent 70%
+        );
+        -webkit-mask: radial-gradient(
+            circle,
+            transparent 60%,
+            black 60%,
+            black 70%,
+            transparent 70%
+        );
+    }
+
+    .percentage-text {
+        font-size: 1.8rem;
+        font-weight: bold;
+        z-index: 1;
+    }
+
+    .good-attendance .circle-progress {
+        border-top-color: #28a745;
+        border-right-color: #28a745;
+    }
+
+    .warning-attendance .circle-progress {
+        border-top-color: #ffc107;
+        border-right-color: #ffc107;
+    }
+
+    .poor-attendance .circle-progress {
+        border-top-color: #dc3545;
+        border-right-color: #dc3545;
+    }
+
+    .form-container {
+        display: none;
+        margin-bottom: 2rem;
+    }
+
+    .action-buttons {
+        gap: 1rem;
+    }
+
+    .stats-item {
+        text-align: center;
+        padding: 0.5rem;
+        border-radius: 8px;
+        background-color: #f8f9fa;
+    }
+
+    .stats-label {
+        font-size: 0.875rem;
+        color: #6c757d;
+        margin-bottom: 0.25rem;
+    }
+
+    .stats-value {
+        font-size: 1.25rem;
+        font-weight: bold;
+        color: #212529;
+    }
+
+    .attendance-status {
+        margin-top: 1rem;
+        padding: 1rem;
+        border-radius: 8px;
+        text-align: center;
+    }
+
+    .status-good {
+        background-color: #d4edda;
+        color: #155724;
+    }
+
+    .status-warning {
+        background-color: #fff3cd;
+        color: #856404;
+    }
+
+    .status-poor {
+        background-color: #f8d7da;
+        color: #721c24;
+    }
+
+    .no-courses-message {
+        text-align: center;
+        color: red;
+        font-weight: bold;
+        font-size: 2rem;
+    }
+
+    .fooo {
+        background: linear-gradient(
+                to bottom,
+                rgba(0, 80, 120, 0.8),
+                rgba(0, 120, 100, 0.6)
+            ),
+            url('../assets/back.jfif') center/cover no-repeat;
+        color: white;
+    }
+
+    .circle {
+        width: 50px;
+        height: 50px;
+        background-color: #198754;
+        color: white;
+        font-weight: bold;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 10px;
+        font-size: 1.2rem;
+    }
+
+    .step h5 {
+        margin-top: 10px;
+    }
+
+    .step p {
+        color: #555;
+    }
+
+    .fooo p {
+        color: black;
+    }
+
+    .info-section {
+        padding: 60px 0;
+        background: linear-gradient(
+            to right,
+            rgba(255, 255, 255, 1),
+            rgba(240, 245, 255, 0.6)
+        );
+    }
+
+    .feature-icon {
+        font-size: 24px;
+        color: teal;
+    }
+
+    .testimonial {
+        background: white;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .testimonial img {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        margin-right: 10px;
+    }
+
+    .footer {
+        background-color: #004d40;
+        color: #ffffff;
+        padding: 40px 0;
+        text-align: center;
+    }
+
+    .footer a {
+        text-decoration: none;
+        color: #ffffff;
+        font-weight: 500;
+        margin: 0 15px;
+    }
+
+    .footer a:hover {
+        text-decoration: underline;
+    }
+
+    .social-icons a {
+        font-size: 20px;
+        margin: 0 10px;
+        color: #ffffff;
+    }
+
+    .social-icons a:hover {
+        color: #007bff;
+    }
+
+    .footer-text {
+        font-size: 14px;
+        margin-top: 10px;
+        color: #6c757d;
+    }
+
+    .made-in {
+        font-size: 12px;
+        color: #6c757d;
+    }
+    .addcrse {
+        background-color: black;
+        color: white;
+        font-weight: bold;
+    }
+    .addcrse:hover {
+        background-color: white;
+        color: black;
+        border: 1px solid black;
+    }
+    .editatt {
+        background-color: white;
+        color: black;
+        border: 1px solid black;
+        font-weight: bold;
+    }
+    .editatt:hover {
+        background-color: black;
+        color: white;
+        font-weight: bold;
+    }
