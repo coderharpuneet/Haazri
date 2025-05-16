@@ -3,12 +3,9 @@ const session = require("express-session")
 const fs = require("fs")
 const path = require("path")
 const cors = require("cors")
-const bodyParser=require("body-parser")
-
+const mongoose = require('mongoose');
 const app = express()
-// app.use(bodyParser.urlencoded({ extended: true }))
-// app.use(bodyParser.json())
-// Set EJS as the view engine
+
 app.set("view engine", "ejs")
 app.set("views", path.join(__dirname, "views"))
 
@@ -33,27 +30,23 @@ const writeUsers = (users) => {
 }
 
 
-// ✅ Custom middleware to check if user is logged in
 function requireLogin(req, res, next) {
   if (!req.session.user) {
-    // Not logged in
     const err = new Error("You must be logged in to access this page");
     err.status = 401;
     return next(err);
   }
 
-  // Optional: check if query username matches session user
   if (req.query.username && req.query.username !== req.session.user.username) {
     const err = new Error("Unauthorized access to another user's data");
     err.status = 403;
     return next(err);
   }
 
-  next(); // everything ok, go ahead
+  next(); 
 }
 
 
-// Updated routes to render EJS templates
 app.get("/", (req, res) => {
   res.render("landing")
 })
@@ -65,8 +58,16 @@ app.get("/login", (req, res) => {
 
 
 app.get("/attendance", requireLogin, (req, res) => {
-  const { username } = req.session.user;
-  res.render("attendance", { username });
+  const sessionUsername = req.session.user.username;
+  const urlUsername = req.query.username;
+
+  if (!urlUsername || urlUsername !== sessionUsername) {
+    const err = new Error("Unauthorized access to another user's data");
+    err.status = 403;
+    return res.status(403).render("403", { errorMessage: err.message });
+  }
+
+  res.render("attendance", { username: urlUsername });
 });
 
 
@@ -90,7 +91,8 @@ app.post("/login", (req, res) => {
   }
 
   req.session.user = { username: user.username, email: user.email }
-  res.json({ message: "Login successful", redirectUrl: `/attendance` })
+  res.json({ message: "Login successful", redirectUrl: `/attendance?username=${username}` })
+
 })
 
 app.post("/signup", (req, res) => {
@@ -160,10 +162,7 @@ const initializeAttendanceFile = () => {
 
 initializeAttendanceFile()
 
-// 404 route - should be at the very bottom
-// app.use((req, res) => {
-//     res.status(404).render('404', { errorMessage: "We couldn't find that page 😕" });
-//   });
+
 
 
 app.use((req, res, next) => {
@@ -177,7 +176,7 @@ app.use((err, req, res, next) => {
   const status = err.status || 500;
 
   if (status === 401 || status === 403) {
-    return res.status(status).render("404", {
+    return res.status(status).render("403", {
       errorMessage: err.message
     });
   }
@@ -193,6 +192,16 @@ app.use((err, req, res, next) => {
 
 
 
-app.listen(PORT, () => {
-  console.log(`Server running on http://localhost:${PORT}`)
-})
+const dbConnection=async()=>{
+    try{
+        await mongoose.connect("mongodb+srv://HaazriLagao:HaazriLagao@haazri1.dshgjci.mongodb.net/?retryWrites=true&w=majority&appName=Haazri1");
+        console.log("Database connected successfully");
+        app.listen(PORT,()=>{
+            console.log(`Server is running on port ${PORT}`);
+        })
+    }
+    catch(err){
+        console.log(err);
+    }
+}
+dbConnection();
